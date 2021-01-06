@@ -1,0 +1,700 @@
+﻿
+@{
+    ViewBag.Title = "Analytics";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h5 class="pgtitle"><i class="fas fa-chart-line menu-mr"></i> Analytics Dashbord</h5>
+<div ng-app="newsportalApp" class="row bg-smoke page-padding">
+    <div ng-controller="NewsArchiveCtrl" class="col-lg-12 col-12 col-md-12">
+        <div class="row">
+            <div class="col-12 col-lg-12 col-md-12">
+                <button ng-click="onFliter('all')" ng-disabled="disAll" class="btn btn-bg-11 text-light np-btn btn-pad">All</button>
+                <button ng-click="onFliter('mine')" ng-disabled="disMine" class="btn btn-bg-10 text-light np-btn btn-pad">Mine</button>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-lg-3">
+                 <div class="card bg-header-6">
+                    <div class="card-body">
+                        <h5 class="ch"><i class="fas fa-newspaper"></i> Today Post - {{TodayTotal}}</h5>
+                        <p>Today's total post</p>
+                    </div>
+                 </div>
+            </div>
+            <div class="col-lg-3 mt-3 mt-lg-0">
+                <div class="card bg-header-7">
+                    <div class="card-body">
+                        <h5 class="ch"><i class="fas fa-eye"></i> Total Post View - {{TodayView}}</h5>
+                        <p>Today's total post view</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mt-3 mt-lg-0">
+                <div class="card bg-header-8">
+                    <div class="card-body">
+                        <h5 class="ch"><i class="fas fa-newspaper"></i> Total Post - {{TotalPost}}</h5>
+                        <p>Overall post of the portal</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mt-3 mt-lg-0">
+                <div class="card bg-header-4">
+                    <div class="card-body">
+                        <h5 class="ch"><i class="fas fa-eye"></i> Total View - {{TotalView}}</h5>
+                        <p>Overall post view of the portal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+                <div class="col-lg-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-header-1">
+                            <h5 class="ch"><i class="fas fa-calendar-day"></i> Today vs Yesterday</h5>
+                            <p>Total Post of Today vs Yesterday</p>
+                        </div>
+                        <div class="card-body crdbdy">
+                            <canvas id="myChart" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-5 mt-lg-0">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-header-2">
+                            <h5 class="ch"><i class="fas fa-calendar-week"></i> This Week vs Last Week</h5>
+                            <p>Total Post of this Week vs Last Week</p>
+                        </div>
+                        <div class="card-body crdbdy">
+                            <canvas id="myChart1" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-5 mt-lg-0">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-header-3">
+                            <h5 class="ch"><i class="fas fa-calendar-alt"></i> This Month vs Last Month</h5>
+                            <p>Total Post of this Month vs Last Month</p>
+                        </div>
+                        <div class="card-body crdbdy">
+                            <canvas id="myChart2" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="row mt-5">
+                <div class="col-lg-4 offset-lg-2">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-header-4">
+                            <h5 class="ch"><i class="fas fa-upload"></i> Total Post</h5>
+                            <p>Total Post of this Portal</p>
+                        </div>
+                        <div class="card-body crdbdy">
+                            <canvas id="myChart6" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-5 mt-lg-0">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-header-5">
+                            <h5 class="ch"><i class="fas fa-eye"></i> Total View</h5>
+                            <p>Total View of this Portal</p>
+                        </div>
+                        <div class="card-body crdbdy">
+                            <canvas id="myChart7" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="row mt-5">
+                <div class="col-lg-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-header-6">
+                            <h5 class="ch"><i class="fas fa-calendar-alt"></i> Today vs Yesterday</h5>
+                            <p>Total View of Today vs Yesterday</p>
+                        </div>
+                        <div class="card-body crdbdy">
+                            <canvas id="myChart3" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-5 mt-lg-0">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-header-7">
+                            <h5 class="ch"><i class="fas fa-calendar-week"></i> This Week vs Last Week</h5>
+                            <p>Total View of this Week vs Last Week</p>
+                        </div>
+                        <div class="card-body crdbdy">
+                            <canvas id="myChart4" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-5 mt-lg-0">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-header-8">
+                            <h5 class="ch"><i class="fas fa-calendar-week"></i> This Month vs Last Month</h5>
+                            <p>Total View of this Month vs Last Month</p>
+                        </div>
+                        <div class="card-body crdbdy">
+                            <canvas id="myChart5" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<link href="~/Scripts/Charts/Chart.min.css" rel="stylesheet" />
+@section scripts
+{
+    <script src="~/Scripts/Charts/Chart.min.js"></script>
+    <script>
+        var newsportalApp = angular.module('newsportalApp', ['ngResource']);
+        newsportalApp.filter("dateFilter", function () {
+            return function (x) {
+                return new Date(parseInt(x.substr(6)));
+            };
+        });
+        newsportalApp.factory('NewsPostFc', ['$resource', function ($resource) {
+            return $resource('', {}, {
+                query: {
+                    method: 'GET',
+                    url: '/NewsOprations/GetAnalytics',
+                    params: { format: 'json' },
+                    isArray: false
+                }
+            });
+        }]);
+        newsportalApp.controller('NewsArchiveCtrl', ['$scope', 'NewsPostFc','$window', '$timeout',
+            function ($scope, NewsPostFc, $window, $timeout) {
+                $scope.disAll = true;
+                $scope.onFliter = function (mode) {
+                    if (mode == "all") {
+                        $scope.disAll = true;
+                        $scope.disMine = false;
+                    }
+                    else {
+                        $scope.disAll = false;
+                        $scope.disMine = true;
+                    }
+                    NewsPostFc.query({ mode: mode }).$promise.then(function (data) {
+                        $scope.Chart1(data.TdayYday);
+                        $scope.Chart2(data.Wkly);
+                        $scope.Chart3(data.Monthly);
+                        $scope.Chart4(data.DayView);
+                        $scope.Chart5(data.WkView);
+                        $scope.Chart6(data.MonthView);
+                        $scope.Chart7(data.TotPst);
+                        $scope.Chart8(data.TotView);
+                        loaderHide();
+                    }, function (error) {
+                        console.log(error);
+                    });
+                };
+                $scope.onFliter("all");
+                var colorArray = ['#0074D9', '#2ECC40', '#FF851B', '#7FDBFF', '#B10DC9', '#FFDC00', '#39CCCC','#001F3F', '#01FF70', '#85144B', '#F012BE', '#20c997', '#FF4136', '#3D9970', '#111111']
+                $scope.Chart1 = function (dayData) {
+                    if (dayData == null) {
+                        return
+                    }
+                    var item = JSON.parse(dayData);
+                    var lables = [];
+                    var curdata = [];
+                    var prevdata = [];
+                    $scope.TodayTotal = 0;
+                    for (var i = 0; i < item.length; i++) {
+                        if (!lables.includes(item[i].OdiaName)) {
+                            lables.push(item[i].OdiaName);
+                        }
+                        if (item[i].staus != "prev") {
+                            curdata.push(item[i].TotView);
+                            $scope.TodayTotal = $scope.TodayTotal + parseInt(item[i].TotView);
+                        }
+                        else {
+                            prevdata.push(item[i].TotView);
+                        }
+
+                    }
+                    var ctx = document.getElementById('myChart');
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: lables,
+                            datasets: [{
+                                label: 'Today',
+                                data: curdata,
+                                borderWidth: 2,
+                                borderColor: colorArray[0],
+                                backgroundColor: colorArray[0],
+                                pointRadius: 3,
+                                pointBackgroundColor: colorArray[0],
+                                pointBorderColor: colorArray[0],
+                                fill: false
+
+                            },
+                             {
+                                label: 'Yesterday',
+                                data: prevdata,
+                                borderWidth: 2,
+                                 borderColor: colorArray[1],
+                                 backgroundColor: colorArray[1],
+                                 pointRadius: 3,
+                                 pointBackgroundColor: colorArray[1],
+                                 pointBorderColor: colorArray[1],
+                                 fill: false
+                              }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        suggestedMax: 10
+                                    }
+                                }]
+                            },
+                            title: {
+                                display: true
+                            },
+                            legend: {
+                                position:'top'
+                            }
+                        }
+                    });
+                };
+                $scope.Chart2 = function (weekData) {
+                    if (weekData == null) {
+                        return
+                    }
+                    var item = JSON.parse(weekData);
+                    var lables = [];
+                    var curdata = [];
+                    var prevdata = [];
+                    for (var i = 0; i < item.length; i++) {
+                        if (!lables.includes(item[i].OdiaName)) {
+                            lables.push(item[i].OdiaName);
+                        }
+                        if (item[i].staus != "prev") {
+                            curdata.push(item[i].TotView);
+                        }
+                        else {
+                            prevdata.push(item[i].TotView);
+                        }
+
+                    }
+
+                    var ctx1 = document.getElementById('myChart1');
+                    var myChart1 = new Chart(ctx1, {
+                        type: 'line',
+                        data: {
+                            labels: lables,
+                            datasets: [{
+                                label: 'This Week',
+                                data: curdata,
+                                borderWidth: 2,
+                                borderColor: colorArray[2],
+                                backgroundColor: colorArray[2],
+                                pointRadius: 3,
+                                pointBackgroundColor: colorArray[2],
+                                pointBorderColor: colorArray[2],
+                                fill: false
+
+                            },
+                                {
+                                    label: 'Last Week',
+                                    data: prevdata,
+                                    borderWidth: 2,
+                                    borderColor: colorArray[3],
+                                    backgroundColor: colorArray[3],
+                                    pointRadius: 3,
+                                    pointBackgroundColor: colorArray[3],
+                                    pointBorderColor: colorArray[3],
+                                    fill: false
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        suggestedMax: 50
+                                    }
+                                }]
+                            },
+                            title: {
+                                display: true
+
+                            },
+                            legend: {
+                                position: 'top'
+                            }
+                        }
+                    });
+
+                };
+                $scope.Chart3 = function (monthData) {
+                    if (monthData == null) {
+                        return
+                    }
+                    var item = JSON.parse(monthData);
+                    var lables = [];
+                    var curdata = [];
+                    var prevdata = [];
+                    for (var i = 0; i < item.length; i++) {
+                        if (!lables.includes(item[i].OdiaName)) {
+                            lables.push(item[i].OdiaName);
+                        }
+                        if (item[i].staus != "prev") {
+                            curdata.push(item[i].TotView);
+                        }
+                        else {
+                            prevdata.push(item[i].TotView);
+                        }
+
+                    }
+                    var ctx2 = document.getElementById('myChart2');
+                    var myChart2 = new Chart(ctx2, {
+                        type: 'line',
+                        data: {
+                            labels: lables,
+                            datasets: [{
+                                label: 'This Month',
+                                data: curdata,
+                                borderWidth: 2,
+                                borderColor: colorArray[4],
+                                backgroundColor: colorArray[4],
+                                pointRadius: 3,
+                                pointBackgroundColor: colorArray[4],
+                                pointBorderColor: colorArray[4],
+                                fill: false
+
+                            },
+                                {
+                                    label: 'Last Month',
+                                    data: prevdata,
+                                    borderWidth: 2,
+                                    borderColor: colorArray[5],
+                                    backgroundColor: colorArray[5],
+                                    pointRadius: 3,
+                                    pointBackgroundColor: colorArray[5],
+                                    pointBorderColor: colorArray[5],
+                                    fill: false
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        suggestedMax:200
+                                    }
+                                }]
+                            },
+                            title: {
+                                display: true
+
+                            },
+                            legend: {
+                                position: 'top'
+                            }
+                        }
+                    });
+
+                };
+                $scope.Chart4 = function (dayDataview) {
+                    if (dayDataview == null) {
+                        return
+                    }
+                    var item = JSON.parse(dayDataview);
+                    var lables = [];
+                    var curdata = [];
+                    var prevdata = [];
+                    $scope.TodayView = 0;
+                    for (var i = 0; i < item.length; i++) {
+                        if (!lables.includes(item[i].OdiaName)) {
+                            lables.push(item[i].OdiaName);
+                        }
+                        if (item[i].staus != "prev") {
+                            curdata.push(item[i].TotView);
+                            $scope.TodayView = $scope.TodayView + parseInt(item[i].TotView);
+                        }
+                        else {
+                            prevdata.push(item[i].TotView);
+                        }
+
+                    }
+                    var ctx3 = document.getElementById('myChart3');
+                    var myChart3 = new Chart(ctx3, {
+                        type: 'line',
+                        data: {
+                            labels: lables,
+                            datasets: [{
+                                label: 'Today',
+                                data: curdata,
+                                borderWidth: 2,
+                                borderColor: colorArray[6],
+                                backgroundColor: colorArray[6],
+                                pointRadius: 3,
+                                pointBackgroundColor: colorArray[6],
+                                pointBorderColor: colorArray[6],
+                                fill: false
+
+                            },
+                                {
+                                    label: 'Yesterday',
+                                    data: prevdata,
+                                    borderWidth: 2,
+                                    borderColor: colorArray[7],
+                                    backgroundColor: colorArray[7],
+                                    pointRadius: 3,
+                                    pointBackgroundColor: colorArray[7],
+                                    pointBorderColor: colorArray[7],
+                                    fill: false
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        suggestedMax: 100
+                                    }
+                                }]
+                            },
+                            title: {
+                                display: true
+                            },
+                            legend: {
+                                position: 'top'
+                            }
+                        }
+                    });
+
+                };
+
+                $scope.Chart5 = function (weekDataview) {
+                    if (weekDataview == null) {
+                        return
+                    }
+                    var item = JSON.parse(weekDataview);
+                    var lables = [];
+                    var curdata = [];
+                    var prevdata = [];
+                    for (var i = 0; i < item.length; i++) {
+                        if (!lables.includes(item[i].OdiaName)) {
+                            lables.push(item[i].OdiaName);
+                        }
+                        if (item[i].staus != "prev") {
+                            curdata.push(item[i].TotView);
+                        }
+                        else {
+                            prevdata.push(item[i].TotView);
+                        }
+
+                    }
+                    var ctx4 = document.getElementById('myChart4');
+                    var myChart4 = new Chart(ctx4, {
+                        type: 'line',
+                        data: {
+                            labels: lables,
+                            datasets: [{
+                                label: 'This Week',
+                                data: curdata,
+                                borderWidth: 2,
+                                borderColor: colorArray[8],
+                                backgroundColor: colorArray[8],
+                                pointRadius: 3,
+                                pointBackgroundColor: colorArray[8],
+                                pointBorderColor: colorArray[8],
+                                fill: false
+
+                            },
+                                {
+                                    label: 'Last Week',
+                                    data: prevdata,
+                                    borderWidth: 2,
+                                    borderColor: colorArray[9],
+                                    backgroundColor: colorArray[9],
+                                    pointRadius: 3,
+                                    pointBackgroundColor: colorArray[9],
+                                    pointBorderColor: colorArray[9],
+                                    fill: false
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        suggestedMax: 700
+                                    }
+                                }]
+                            },
+                            title: {
+                                display: true
+                            },
+                            legend: {
+                                position: 'top'
+                            }
+                        }
+                    });
+
+                };
+
+                $scope.Chart6 = function (monthDataview) {
+                    if (monthDataview == null) {
+                        return
+                    }
+                    var item = JSON.parse(monthDataview);
+                    var lables = [];
+                    var curdata = [];
+                    var prevdata = [];
+                    for (var i = 0; i < item.length; i++) {
+                        if (!lables.includes(item[i].OdiaName)) {
+                            lables.push(item[i].OdiaName);
+                        }
+                        if (item[i].staus != "prev") {
+                            curdata.push(item[i].TotView);
+                        }
+                        else {
+                            prevdata.push(item[i].TotView);
+                        }
+
+                    }
+                    var ctx5 = document.getElementById('myChart5');
+                    var myChart5 = new Chart(ctx5, {
+                        type: 'line',
+                        data: {
+                            labels: lables,
+                            datasets: [{
+                                label: 'This Month',
+                                data: curdata,
+                                borderWidth: 2,
+                                borderColor: colorArray[10],
+                                backgroundColor: colorArray[10],
+                                pointRadius: 3,
+                                pointBackgroundColor: colorArray[10],
+                                pointBorderColor: colorArray[10],
+                                fill: false
+
+                            },
+                                {
+                                    label: 'Last Month',
+                                    data: prevdata,
+                                    borderWidth: 2,
+                                    borderColor: colorArray[11],
+                                    backgroundColor: colorArray[11],
+                                    pointRadius: 3,
+                                    pointBackgroundColor: colorArray[11],
+                                    pointBorderColor: colorArray[11],
+                                    fill: false
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        suggestedMax: 2000
+                                    }
+                                }]
+                            },
+                            title: {
+                                display: true
+                            },
+                            legend: {
+                                position: 'top'
+                            }
+                        }
+                    });
+
+                };
+
+                $scope.Chart7 = function (TotPst) {
+                    if (TotPst == null) {
+                        return
+                    }
+                    var item = JSON.parse(TotPst);
+                    var lables = [];
+                    var data = [];
+                    $scope.TotalPost = 0;
+                    for (var i = 0; i < item.length; i++) {
+                        if (!lables.includes(item[i].OdiaName)) {
+                            lables.push(item[i].OdiaName);
+                        }
+                        data.push(item[i].TotView)
+                        $scope.TotalPost = $scope.TotalPost+parseInt(item[i].TotView);
+
+                    }
+
+                    var ctx6 = document.getElementById('myChart6');
+                    var myChart6 = new Chart(ctx6, {
+                        type: 'pie',
+                        data: {
+                            labels: lables,
+                            datasets: [{
+                                data: data,
+                                backgroundColor: colorArray
+                               }]
+                        },
+                        options: {
+                            title: {
+                                display: true
+                            },
+                            legend: {
+                                position: 'top'
+                            }
+                        }
+                    });
+
+                };
+
+                $scope.Chart8 = function (TotView) {
+                    if (TotView == null) {
+                        return
+                    }
+                    var item = JSON.parse(TotView);
+                    var lables = [];
+                    var data = [];
+                    $scope.TotalView = 0;
+                    for (var i = 0; i < item.length; i++) {
+                        if (!lables.includes(item[i].OdiaName)) {
+                            lables.push(item[i].OdiaName);
+                        }
+                        data.push(item[i].TotView)
+                        $scope.TotalView = $scope.TotalView + parseInt(item[i].TotView);
+
+                    }
+                    var ctx7 = document.getElementById('myChart7');
+                    var myChart7 = new Chart(ctx7, {
+                        type: 'doughnut',
+                        data: {
+                            labels: lables,
+                            datasets: [{
+                                data: data,
+                                backgroundColor: colorArray
+                              }
+                            ]
+                        },
+                        options: {
+                            title: {
+                                display: true
+                            },
+                            legend: {
+                                position: 'top'
+                            }
+
+                        }
+                    });
+
+                };
+
+            }]
+        );
+    </script>
+}

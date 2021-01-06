@@ -1,0 +1,12 @@
+﻿<div ng-hide="(!pagesCount || pagesCount < 2)">
+        <ul class="pagination pagination-sm">
+            <li class="page-item" ng-class="{disabled: page == 0}"><a href="#" class="page-link" ng-click="search(0)">First</a></li>
+            <li class="page-item" ng-class="{disabled: page == 0}"><a href="#" class="page-link" ng-click="search(page-1)">Previous</a></li>
+            <li class="page-item" ng-repeat="n in range()" ng-class="{active: n == page}">
+                <a href="#" class="page-link" ng-click="search(n)">{{n+1}}</a>
+            </li>
+            <li class="page-item" ng-class="{disabled: page == pagesCount - 1}"><a href="#" class="page-link" ng-click="search(page-(-1))">Next</a></li>
+            <li class="page-item" ng-class="{disabled:page == pagesCount - 1}"><a href="#" class="page-link" ng-click="search(pagesCount - 1)">Last</a></li>
+        </ul>
+        <!--<span ng-show="totalCount" class="pagingInfo">Total {{totalCount}} items</span> <span class="pagingInfo">, Page</span><span class="pagingInfo"> Of {{pagesCount}}</span>-->
+</div>

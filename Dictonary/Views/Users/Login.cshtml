@@ -1,0 +1,56 @@
+﻿@model NewsPortal.Concrete.clsUser
+@{
+   ViewBag.Title = "Login";
+   Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<div class="row align-items-center">
+    <div class="col-lg-5 col-sm-12 mx-auto">
+        <div class="text-center">
+            <h3 text-light><span><b>Khabar</b></span> <span><b>Odia</b></span></h3>
+        </div>
+    </div>
+ </div>
+<div class="row align-items-center mt-4 mb-5">
+        <div class="col-lg-5 col-sm-12 mx-auto">
+            <div class="card">
+                <div class="card-header bg-header-6">
+                    <div class="text-center">
+                        <h4 class="text-light header-text">Admin Login</h4>
+                    </div>
+                </div>
+                <div class="card-body pt-5">
+                    @using (Html.BeginForm("Login", "Users", FormMethod.Post, new { @id = "loginform" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label for="txtUserName">UserName</label>
+                            @Html.TextBoxFor(x => x.UserName, new { id = "txtUserName",placeholder="Enter your username", @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPassword">Password</label>
+                            @Html.PasswordFor(x => x.Password, new { id = "txtPassword", placeholder = "Enter your password", @class = "form-control" })
+                        </div>
+                        <input id="btnSubmit" value="Login" class="btn btn-cyan btn-lg btn-block text-light" type="submit" />
+                        <input id="btnReset" value="Clear" class="btn btn-pink btn-lg btn-block text-light" type="reset" />
+                    }
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="clsforgot">Forgot Password</a>
+                </div>
+                <div class="text-center"><span id="spnmsg">@TempData["loginFailedMessage"]</span></div>
+            </div>
+        </div>
+    </div>
+    @section scripts
+{
+        @*<script>
+            $(document).ready(function () {
+                $('#btnReset').click(function (e) {
+                    $('#txtUserName').val("");
+                });
+            });
+        </script>*@
+    }
+
+
+

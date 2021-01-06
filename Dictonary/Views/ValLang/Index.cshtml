@@ -1,0 +1,135 @@
+﻿@model NewsPortal.Common.clsLanguage
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-app="NewsPortalApp" ng-controller="NewsPortalController">
+    <label for="txtlang">Language</label>
+    <input type="text" id="txtlang" ng-model="LangName" class="form-control" placeholder="Enter Language Name Here" />
+    <input type="button" value="Save" ng-click="Add()" class="btn btn-success" />
+    
+    <table id="tblLang" class="table" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th># Id</th>
+                <th>Language Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="m in Language">
+            <tr>
+                <td><span>{{$index+1}}</span></td>
+                <td>
+                    <span ng-hide="m.EditMode">{{m.Language}}</span>
+                    <input type="text" ng-model="m.Language" ng-show="m.EditMode" />
+                </td>
+                <td>
+                    <a class="Edit" href="javascript:;" ng-hide="m.EditMode" ng-click="Edit($index)">Edit</a>
+                    <a class="Update" href="javascript:;" ng-show="m.EditMode" ng-click="Update($index)">Update</a>
+                    <a class="Cancel" href="javascript:;" ng-show="m.EditMode" ng-click="Cancel($index)">Cancel</a>
+                    <a href="javascript:;" ng-hide="m.EditMode" ng-click="Delete(m.Id)">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@section scripts
+{
+    <script>
+        var app = angular.module('NewsPortalApp', []);
+        app.controller('NewsPortalController', function ($scope, $http, $window) {
+            var post = $http({
+                method: "POST",
+                url: "/ValLang/GetLang",
+                dataType: 'json',
+                headers: { "Content-Type": "application/json" }
+            });
+            post.then(function (data, status) {
+                $scope.Language = data.data;
+            });
+
+            //Adding new record to database.
+            $scope.Add = function () {
+                if (typeof ($scope.LangName) == "undefined") {
+                    return;
+                }
+                var post = $http({
+                    method: "POST",
+                    url: "/ValLang/InsertLang",
+                    data: "{LangName: '" + $scope.LangName + "'}",
+                    dataType: 'json',
+                    headers: { "Content-Type": "application/json" }
+                });
+                post.then(function (data, status) {
+                    //The newly inserted record is inserted into the Customers array.
+                    $scope.Language.push(data)
+                });
+                $scope.LangName = "";
+            };
+
+            //This variable is used to store the original values.
+            $scope.EditItem = {};
+            //Editing an existing record.
+            $scope.Edit = function (index) {
+
+                //Setting EditMode to TRUE makes the TextBoxes visible for the row.
+                $scope.Language[index].EditMode = true;
+
+                //The original values are saved in the variable to handle Cancel case.
+                $scope.EditItem.Language = $scope.Language[index].Language;
+
+            };
+
+            //Cancelling an Edit.
+            $scope.Cancel = function (index) {
+                // The original values are restored back into the Language Array.
+                $scope.Language[index].Name = $scope.EditItem.Language;
+                //Setting EditMode to FALSE hides the TextBoxes for the row.
+                $scope.Language[index].EditMode = false;
+                $scope.EditItem = {};
+            };
+
+            //Updating an existing record to database.
+            $scope.Update = function (index) {
+                var lang = $scope.Language[index];
+                var _lang = {};
+                _lang.Id = lang.Id;
+                _lang.LangName = lang.Language
+
+                var post = $http({
+                    method: "POST",
+                    url: "/ValLang/UpdateLang",
+                    data: '{_lang:' + JSON.stringify(_lang) + '}',
+                    dataType: 'json',
+                    headers: { "Content-Type": "application/json" }
+                });
+                post.then(function (data, status) {
+                    //Setting EditMode to FALSE hides the TextBoxes for the row.
+                    lang.EditMode = false;
+                });
+            };
+            //Deleting an existing record from database.
+            $scope.Delete = function (LangId) {
+                if ($window.confirm("Do you want to delete this row?")) {
+                    var obj = {};
+                    obj.Id = LangId;
+
+                    var post = $http({
+                        method: "POST",
+                        url: "/Home/DeleteLang",
+                        data: JSON.stringify(obj),
+                        dataType: 'json',
+                        headers: { "Content-Type": "application/json" }
+                    });
+                    post.then(function (data, status) {
+                        $scope.Language = $scope.Language.filter(function (_lang) {
+                            return _lang.Id !== Id;
+                        });
+                    });
+                }
+            };
+        });
+
+    </script>
+}

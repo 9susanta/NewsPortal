@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "Topic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row npmr-top">
+    <div class="col-lg-12 no-gutters">
+        <div class="row mb-4">
+            <div class="col-lg-8">
+                <div class="row no-gutters nua-khbar npborder">
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                        <div class="row no-gutters">
+                            <div class="col-lg-12 col-sm-12 col-xl-12">
+                                <h3 class="ns-headingone">
+                                    <a href="#">
+                                        <span class="fontweightsix nstitle bg-black">
+                                            ଅନୁସନ୍ଧାନ କରୁଥିବା ବର୍ଗ
+                                        </span>
+                                    </a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-lg-12 col-sm-12 col-xs-12 margin_div cat-header">
+                                <h3>{{categ}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters nua-khbar npborder npmr-top">
+                    <div class="col-lg-12">
+                        <newsportal-pager page="{{page}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></newsportal-pager>
+                        <list data="Data" mainurl="{{url}}"></list>
+                        <newsportal-pager page="{{page}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></newsportal-pager>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row no-gutters nua-khbar ns-btmtop">
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-12 npborder ns-news pd-top-20">
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12 col-xl-12">
+                                        <h3 class="ns-heading">
+                                            <a href="#">
+                                                <span class="nstitle pd-title bg-pink">
+                                                    Follow Us
+                                                </span>
+                                            </a>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 pd-social social">
+                                        <ul>
+                                            <li><a href="https://www.facebook.com/khabarodianews/"><i class="fab fa-facebook-square fackbook"></i></a></li>
+                                            <li><i class="fab fa-twitter-square twitter"></i></li>
+                                            <li><i class="fab fa-google-plus-square googleplus"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters nua-khbar np-padtop">
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="row newsmargin">
+                            <div class="col-lg-12 npborder ns-news">
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12 col-xl-12">
+                                        <h3 class="ns-heading">
+                                            <a href="#">
+                                                <span class="nstitle bg-pink">
+                                                    ବଡ ଖବର
+                                                </span>
+                                            </a>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <latestlist data="LatestData" mainurl="{{url}}"></latestlist>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 text-center">
+                                        <button class="load btn np-btn bg-teal text-light" ng-disabled="btnlatest" ng-click="LoadMore('Latest')">ଅଧିକ ଖବର ଦେଖନ୍ତୁ...</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row newsmargin">
+                            <div class="col-lg-12 npborder ns-news">
+                                <div class="calendar-wrapper"></div>
+                            </div>
+                        </div>
+                        <div class="row newsmargin">
+                            <div class="col-lg-12 npborder ns-news">
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12 col-xl-12">
+                                        <h3 class="ns-heading">
+                                            <a href="#">
+                                                <span class="nstitle bg-pink">
+                                                    ବହୁ ଚର୍ଚ୍ଚିତ ଖବର
+                                                </span>
+                                            </a>
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <popularlist data="PopularData" mainurl="{{url}}"></popularlist>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 text-center">
+                                        <button class="load btn np-btn bg-teal text-light" ng-disabled="btnpopular" ng-click="LoadMore('Popular')">ଅଧିକ ଖବର ଦେଖନ୍ତୁ...</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 tealback social">
+                <h5 class="text-light">Social Media</h5>
+                <span class="text-light">Follow us on social media</span>
+                <ul>
+                    <li><a href="https://www.facebook.com/khabarodianews/"><i class="fab fa-facebook-square fackbook text-light"></i></a></li>
+                    <li><i class="fab fa-twitter-square text-light"></i></li>
+                    <li><i class="fab fa-google-plus-square text-light"></i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+@Styles.Render("~/Content/calender")
+@section scripts
+{
+    @Scripts.Render("~/bundles/calendar")
+    @Scripts.Render("~/bundles/top")
+}

@@ -1,0 +1,312 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h5 class="pgtitle"><i class="fas fa-list-alt menu-mr"></i> News Type</h5>
+<div ng-app="newsportalApp">
+    <div ng-controller="NewsTypeArchiveCtrl" class="row bg-smoke page-padding">
+        <div class="col-lg-4">
+            <div class="card mt-2">
+                <div class="card-header bg-header-7">
+                    <h5 class="ch"><i class="fas fa-list-alt"></i> Create News Type</h5>
+                    <p>Create news post</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label for="txtnewstype">News Type(English)</label>
+                                <input type="text" id="txtnewstype" ng-model="NewsType" class="form-control nw-text" placeholder="Enter News Type Name" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label for="txtodianewstype">News Type(Odia)</label>
+                                <input type="text" id="txtodianewstype" ng-model="OdiaName" class="form-control nw-text" placeholder="Enter Name in Odia" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label for="chkMenu">Is Menu</label>
+                                <input type="checkbox" id="chkMenu" ng-model="IsMenu" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <input type="button" id="btnSave" value="Save" ng-click="Add()" class="btn btn-bg-11 text-light np-btn btn-pad" />
+                                <input type="reset" id="btnRset" value="Reset" ng-click="Reset()" class="btn btn-pink text-light np-btn btn-pad" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="row" ng-hide="isSearching">
+                <div class="col-lg-12">
+                    <div class="card mt-2">
+                        <div class="card-header bg-header-6">
+                            <h5 class="ch"><i class="fas fa-list-alt"></i> View Post Type</h5>
+                            <p>List of all news post</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive-sm">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Odia Name</th>
+                                            <th>Is Menu</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in Data" data-id="{{item.Id}}">
+                                            <td>{{$index+1}}</td>
+                                            <td>
+                                                <span ng-hide="item.EditMode">{{item.NewsType}}</span>
+                                                <input type="text" ng-model="item.NewsType" ng-show="item.EditMode" class="form-control nw-text" />
+                                            </td>
+                                            <td>
+                                                <span ng-hide="item.EditMode">{{item.OdiaName}}</span>
+                                                <input type="text" ng-model="item.OdiaName" ng-show="item.EditMode" class="form-control nw-text" />
+                                            </td>
+                                            <td>
+                                                <span ng-hide="item.EditMode">{{item.IsMenu==true?'Yes':'No'}}</span>
+                                                <input type="checkbox" ng-model="item.IsMenu" ng-show="item.EditMode" class="form-check-input" />
+                                            </td>
+                                            <td>
+                                                <a class="Edit btn btn-bg-11 text-light np-btn btn-pad" href="javascript:;" ng-hide="item.EditMode" ng-click="Edit($index)">Edit</a>
+                                                <a class="Update btn btn-bg-11 text-light np-btn btn-pad" href="javascript:;" ng-show="item.EditMode" ng-click="Update($index)">Update</a>
+                                                <a class="Cancel btn btn-pink text-light np-btn btn-pad" href="javascript:;" ng-show="item.EditMode" ng-click="Cancel($index)">Cancel</a>
+                                                <a class="btn btn-pink text-light np-btn btn-pad" href="javascript:;" ng-hide="item.EditMode" ng-click="Delete(item.Id)">Delete</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center">
+                                <newsportal-pager page="{{page}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></newsportal-pager>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-hide="!isSearching">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+@section scripts
+{
+    <script>
+    var newsportalApp = angular.module('newsportalApp', ['ngResource']);
+    /*************************************************************************/
+    // RESOURCES
+    newsportalApp.factory('NewsType', ['$resource', function ($resource) {
+        return $resource('', {}, {
+            query: {
+                method: 'GET',
+                url: '/NewsType/GetNewsType',
+                params: {format:'json'},
+                isArray: false
+
+            },
+            save: {
+                method: 'Post',
+                url: '/NewsType/InsertNewsType',
+                params: { format: 'json' },
+                isArray: false
+            },
+            update:
+            {
+                method: 'Post',
+                url: '/NewsType/UpdateNewsType',
+                params: { format: 'json' },
+                isArray: false
+            },
+            delete:
+            {
+                method: 'Post',
+                url: '/NewsType/DeleteNewsType',
+                params: { format: 'json' },
+                isArray: false
+            }
+
+        });
+    }]);
+
+    // CONTROLLERS
+    newsportalApp.controller('NewsTypeArchiveCtrl', ['$scope','$window','NewsType',
+        function ($scope,$window,NewsType) {
+
+            $scope.isSearching = false;
+
+            $scope.page = 0;
+            $scope.pagesCount = 0;
+
+            $scope.search = function (page) {
+                loaderShow();
+                page = page || 0;
+                $scope.isSearching = true;
+
+                NewsType.query({ page: page, pageSize: 8 }).$promise.then(function (data) {
+                    $scope.page = data.Page;
+                    $scope.pagesCount = data.TotalPages;
+                    $scope.totalCount = data.TotalCount;
+                    $scope.Data = data.Items;
+                    $scope.isSearching = false;
+                    loaderHide();
+                }, function (error) {
+                    $scope.isSearching = false;
+                    });
+                $scope.isSearching = true;
+            };
+            $scope.Reset = function () {
+                $('#txtnewstype').val("");
+                $('#txtodianewstype').val("");
+                $('#chkMenu').prop('checked', false);
+            }
+            $scope.Add = function () {
+                loaderShow();
+                var obj = {};
+                if ($scope.NewsType == "" || typeof ($scope.NewsType) == "undefined") {
+                    $('#btnSave').blur();
+                    loaderHide();
+                    alertify.alert('News Type', 'Please Enter News Type!', function () { document.querySelector("#txtnewstype").focus(); });
+                    return;
+                }
+                if ($scope.OdiaName == "" || typeof ($scope.OdiaName) == "undefined") {
+                    $('#btnSave').blur();
+                    loaderHide();
+                    alertify.alert('News Type', 'Please Enter News Type In Odia!', function () { document.querySelector("#txtodianewstype").focus(); });
+                    return;
+                }
+                obj.NewsTypeName = $scope.NewsType;
+                obj.NewsTypeOdia = $scope.OdiaName;
+                obj.IsMenu = $scope.IsMenu;
+                NewsType.save(JSON.stringify(obj)).$promise.then(function (data) {
+                    loaderHide();
+                    if (data.msg != undefined) {
+                        $('#btnSave').blur();
+                        loaderHide();
+                        alertify.alert('News Type', data.msg + ' !', function () { document.querySelector("#txtnewstype").focus(); });
+                        return
+                    }
+                    $scope.search();
+                    $scope.NewsType = "";
+                    $scope.OdiaName = "";
+                    $('#chkMenu').prop('checked', false);
+                });
+            };
+
+            $scope.search();
+
+            $scope.EditItem = {};
+            $scope.Edit = function (index) {
+                $scope.Data[index].EditMode = true;
+                $scope.EditItem.NewsType = $scope.Data[index].NewsType;
+                $scope.EditItem.OdiaName = $scope.Data[index].OdiaName;
+                $scope.EditItem.IsMenu = $scope.Data[index].IsMenu;
+
+            };
+            $scope.Cancel = function (index) {
+                $scope.Data[index].NewsType = $scope.EditItem.NewsType;
+                $scope.Data[index].OdiaName = $scope.EditItem.OdiaName;
+                $scope.Data[index].IsMenu = $scope.EditItem.IsMenu;
+                $scope.Data[index].EditMode = false;
+                $scope.EditItem = {};
+            };
+            //Updating an existing record to database.
+            $scope.Update = function (index) {
+                loaderShow();
+                var newstype = $scope.Data[index];
+                var _newstype = {};
+                if (newstype.NewsType == "") {
+                    return;
+                }
+                _newstype.NewsTypeId = newstype.Id;
+                _newstype.NewsTypeName = newstype.NewsType;
+                _newstype.NewsTypeOdia = newstype.OdiaName;
+                _newstype.IsMenu = newstype.IsMenu;
+                NewsType.update(JSON.stringify(_newstype)).$promise.then(function (data) {
+                    loaderHide();
+                    if (data.msg != undefined) {
+                        alertify.alert('News Type', data.msg + ' !');
+
+                    }
+                    newstype.EditMode = false;
+                    $scope.search();
+                });
+
+            };
+            //Deleting an existing record from database.
+            $scope.Delete = function (newstypeId) {
+                if ($window.confirm("Do you want to delete this row?")) {
+                    loaderShow();
+                    var obj = {};
+                    obj.Id = newstypeId;
+
+                    NewsType.delete(JSON.stringify(obj)).$promise.then(function (data) {
+                        $scope.Data = $scope.Data.filter(function (_newstype) {
+                            return _newstype.Id !== newstypeId;
+                        })
+                        loaderHide();
+                        $scope.search();
+                    });
+                }
+            };
+        }]
+    );
+// DIRECTIVES
+    newsportalApp.directive('newsportalPager', function () {
+    return {
+        scope: {
+            page: '@@',
+            pagesCount: '@@',
+            totalCount: '@@',
+            searchFunc: '&'
+        },
+        replace: true,
+        restrict: 'E',
+        templateUrl: '../Scripts/templates/pager-template.html',
+        controller: ['$scope', function ($scope) {
+            $scope.search = function (i) {
+                if ($scope.searchFunc) {
+                    $scope.searchFunc({ page: i });
+                }
+            };
+            $scope.range = function () {
+                if (!$scope.pagesCount) { return []; }
+                var step = 2;
+                var doubleStep = step * 2;
+                var start = Math.max(0, $scope.page - step);
+                var end = start + 1 + doubleStep;
+                if (end > $scope.pagesCount) { end = $scope.pagesCount; }
+
+                var ret = [];
+                for (var i = start; i != end; ++i) {
+                    ret.push(i);
+                }
+
+                return ret;
+            };
+        }]
+    }
+});
+    </script>
+}
+

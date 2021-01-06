@@ -1,0 +1,274 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h5 class="pgtitle"><i class="fas fa-users menu-mr"></i> Roles</h5>
+<div ng-app="newsportalApp" class="row bg-smoke page-padding">
+    <div ng-controller="RolesArchiveCtrl" class="col-lg-12 col-12 col-md-12">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12 col-md-12">
+                <div class="card mt-2">
+                    <div class="card-header bg-header-1">
+                        <h5 class="ch"><i class="fas fa-users"></i> Create Roles</h5>
+                        <p>Create a new roles</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-7 col-sm-12 col-md-8">
+                                <div class="form-group">
+                                    <label for="txtRole">Role Name</label>
+                                    <input type="text" id="txtRole" ng-model="RoleName" class="form-control nw-text" placeholder="Enter Role Name Here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-7 col-sm-12 col-md-8">
+                                <div class="form-group">
+                                    <input type="button" id="btnSave" value="Save" ng-click="Add()" class="btn btn-bg-11 text-light np-btn btn-pad" />
+                                    <input type="reset" id="btnRset" value="Reset" ng-click="Reset()" class="btn btn-pink text-light np-btn btn-pad" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 col-md-12 mt-4 mt-lg-0 mt-md-0">
+                <div class="row" ng-hide="isSearching">
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="card mt-2">
+                            <div class="card-header bg-header-3">
+                                <h5 class="ch"><i class="fas fa-users"></i> View Roles</h5>
+                                <p>View all the roles</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive-sm">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in Data" data-id="{{item.RoleId}}">
+                                                <td>{{$index+1}}</td>
+                                                <td>
+                                                    <span ng-hide="item.EditMode">{{item.RoleName}}</span>
+                                                    <input type="text" ng-model="item.RoleName" ng-show="item.EditMode" class="form-control nw-text" />
+                                                </td>
+                                                <td>
+                                                    <a class="Edit btn btn-bg-11 text-light np-btn btn-pad" href="javascript:;" ng-hide="item.EditMode" ng-click="Edit($index)">Edit</a>
+                                                    <a class="Update btn btn-bg-11 text-light np-btn btn-pad" href="javascript:;" ng-show="item.EditMode" ng-click="Update($index)">Update</a>
+                                                    <a class="Cancel btn btn-pink text-light np-btn btn-pad" href="javascript:;" ng-show="item.EditMode" ng-click="Cancel($index)">Cancel</a>
+                                                    <a class="btn btn btn-pink text-light np-btn btn-pad" href="javascript:;" ng-hide="item.EditMode" ng-click="Delete(item.RoleId)">Delete</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="text-center">
+                                        <newsportal-pager page="{{page}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></newsportal-pager>
+                                    </div>
+                                    <div ng-hide="!isSearching">
+                                        <div class="progress progress-striped active">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+    var newsportalApp = angular.module('newsportalApp', ['ngResource']);
+    /*************************************************************************/
+        newsportalApp.factory('Roles', ['$resource', function ($resource) {
+        return $resource('', {}, {
+            query: {
+                method: 'GET',
+                url: '/Roles/GetRole',
+                params: { format: 'json' },
+                isArray: false
+
+            },
+            save: {
+                method: 'Post',
+                url: '/Roles/InsertRole',
+                params: { format: 'json' },
+                isArray: false
+            },
+            update:
+            {
+                method: 'Post',
+                url: '/Roles/UpdateRole',
+                params: { format: 'json' },
+                isArray: false
+            },
+            delete:
+            {
+                method: 'Post',
+                url: '/Roles/DeleteRole',
+                params: { format: 'json' },
+                isArray: false
+            }
+
+        });
+    }]);
+
+    // CONTROLLERS
+        newsportalApp.controller('RolesArchiveCtrl', ['$scope','$window','Roles',
+            function ($scope, $window, Roles) {
+
+            $scope.isSearching = false;
+
+            $scope.page = 0;
+            $scope.pagesCount = 0;
+
+                $scope.search = function (page) {
+                loaderShow();
+                page = page || 0;
+                $scope.isSearching = true;
+                Roles.query({ page: page, pageSize: 8 }).$promise.then(function (data) {
+                    $scope.page = data.Page;
+                    $scope.pagesCount = data.TotalPages;
+                    $scope.totalCount = data.TotalCount;
+                    $scope.Data = {};
+                    $scope.Data = data.Items;
+                    $scope.isSearching = false;
+                    loaderHide();
+                }, function (error) {
+                    $scope.isSearching = false;
+                    });
+                $scope.isSearching = true;
+                };
+                $scope.Reset = function () {
+                    $('#txtRole').val("");
+                }
+                $scope.Add = function () {
+                    loaderShow();
+                var obj = {};
+                if (typeof ($scope.RoleName) == "undefined") {
+                    $('#btnSave').blur();
+                    loaderHide();
+                    alertify.alert('Role Name', 'Please Enter Role Name!', function () { document.querySelector("#txtRole").focus(); });
+                    return;
+                }
+                obj.RoleName = $scope.RoleName;
+                    Roles.save(JSON.stringify(obj)).$promise.then(function (data) {
+                        loaderHide();
+                    if (data.msg != undefined) {
+                        $('#btnSave').blur();
+                        alertify.alert('Role Name', data.msg + ' !', function () { document.querySelector("#txtRole").focus(); });
+                        return
+                    }
+                    $scope.search();
+                    $scope.RoleName = "";
+                });
+
+            };
+
+            $scope.search();
+
+            $scope.EditItem = {};
+            $scope.Edit = function (index) {
+                $scope.Data[index].EditMode = true;
+                $scope.EditItem.RoleName = $scope.Data[index].RoleName;
+
+            };
+            $scope.Cancel = function (index) {
+                $scope.Data[index].RoleName = $scope.EditItem.RoleName;
+                $scope.Data[index].EditMode = false;
+                $scope.EditItem = {};
+            };
+                $scope.Update = function (index) {
+                    loaderShow();
+                var role = $scope.Data[index];
+                var _role = {};
+                if (role.RoleName == "") {
+                    alertify.alert('Role Name', 'Please Enter Role Name!');
+                    return;
+                }
+                _role.RoleId = role.RoleId;
+                _role.RoleName = role.RoleName
+                    Roles.update(JSON.stringify(_role)).$promise.then(function (data) {
+                        loaderHide();
+                    if (data.msg != undefined) {
+                        alertify.alert('Role Name', data.msg + ' !');
+                        return
+                    }
+                    role.EditMode = false;
+                    $scope.search();
+                });
+
+
+            };
+            //Deleting an existing record from database.
+                $scope.Delete = function (RoleId) {
+                    if ($window.confirm("Do you want to delete this row?")) {
+                        loaderShow();
+                    var obj = {};
+                    obj.Id = RoleId;
+
+                        Roles.delete(JSON.stringify(obj)).$promise.then(function (data) {
+                            loaderHide();
+                        $scope.Data = $scope.Data.filter(function (_role) {
+                            return _role.RoleId !== RoleId;
+                        })
+                        $scope.search();
+                    });
+
+                }
+            };
+        }]
+    );
+// DIRECTIVES
+
+    newsportalApp.directive('newsportalPager', function () {
+    return {
+        scope: {
+            page: '@@',
+            pagesCount: '@@',
+            totalCount: '@@',
+            searchFunc: '&'
+        },
+        replace: true,
+        restrict: 'E',
+        templateUrl: '../Scripts/templates/pager-template.html',
+        controller: ['$scope', function ($scope) {
+            $scope.search = function (i) {
+                if ($scope.searchFunc) {
+                    $scope.searchFunc({ page: i });
+                }
+            };
+            $scope.range = function () {
+                if (!$scope.pagesCount) { return []; }
+                var step = 2;
+                var doubleStep = step * 2;
+                var start = Math.max(0, $scope.page - step);
+                var end = start + 1 + doubleStep;
+                if (end > $scope.pagesCount) { end = $scope.pagesCount; }
+
+                var ret = [];
+                for (var i = start; i != end; ++i) {
+                    ret.push(i);
+                }
+
+                return ret;
+            };
+        }]
+    }
+});
+    </script>
+}
+
+

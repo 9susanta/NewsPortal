@@ -1,0 +1,26 @@
+﻿@model NewsPortal.Common.Users
+@{
+    ViewBag.Title = "LoginUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>LoginUser</h2>
+<form action="@Url.Action("LoginUser","Users")" method="post" onsubmit="return formValidation()">
+    <label for="txtUserName">User Name</label>
+    <input id="txtUserName" value="@Model.UserName" type="text" />
+    <label for="txtPassword">Password</label>
+    <input id="txtPassword" value="@Model.Password" type="password" />
+    <input id="btnSubmit" value="Login" type="submit" />
+</form>
+<script>
+    function formValidation() {
+        if ($('#txtUserName').val() == "") {
+            return false;
+        }
+        else if ($('#txtPassword').val() == "") {
+            return false;
+        }
+        return true;
+    }
+</script>
+

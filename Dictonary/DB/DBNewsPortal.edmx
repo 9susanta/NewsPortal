@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NewsPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="NewsPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EnglishTitle" Type="nvarchar" MaxLength="150" />
+          <Property Name="OdiaTitle" Type="nvarchar" MaxLength="150" />
+          <Property Name="Thumbnail210" Type="nvarchar" MaxLength="50" />
+          <Property Name="Thumbnail279" Type="nvarchar" MaxLength="50" />
+          <Property Name="Thumbnail86" Type="nvarchar" MaxLength="50" />
+          <Property Name="HeaderImageName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EngShortDesc" Type="nvarchar" MaxLength="500" />
+          <Property Name="ODShortDesc" Type="nvarchar" MaxLength="500" />
+          <Property Name="ODContent" Type="nvarchar(max)" />
+          <Property Name="SeoMeta" Type="nvarchar" MaxLength="500" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="PostedDate" Type="date" />
+          <Property Name="PostedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Tags" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostedMonth" Type="int" />
+          <Property Name="PostedYear" Type="int" />
+          <Property Name="Frequency" Type="int" />
+          <Property Name="SlugUrl" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsReviewed" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="ReviewedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="SchdulePostConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostId" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="PostedOn" Type="datetime" />
+          <Property Name="ScheduleTime" Type="datetime" />
+          <Property Name="TimeDelay" Type="int" />
+        </EntityType>
+        <EntityType Name="tblContact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Message" Type="nvarchar" MaxLength="350" />
+          <Property Name="PostedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblNewsType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OdiaName" Type="nvarchar" MaxLength="50" />
+          <Property Name="NewsType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsMenu" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblRights">
+          <Key>
+            <PropertyRef Name="RightsId" />
+          </Key>
+          <Property Name="RightsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RightsName" Type="nvarchar" MaxLength="150" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="150" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="DateUpdate" Type="datetime" />
+          <Property Name="NoofFailurAttempt" Type="int" />
+          <Property Name="IsBlocked" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="NewsPortalModelStoreContainer">
+          <EntitySet Name="NewsPost" EntityType="Self.NewsPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SchdulePostConfig" EntityType="Self.SchdulePostConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblContact" EntityType="Self.tblContact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblNewsType" EntityType="Self.tblNewsType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRights" EntityType="Self.tblRights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NewsPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="NewsPortalEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="tblRoles" EntityType="NewsPortalModel.tblRole" />
+          <EntitySet Name="tblRights" EntityType="NewsPortalModel.tblRight" />
+          <EntitySet Name="tblUsers" EntityType="NewsPortalModel.tblUser" />
+          <EntitySet Name="NewsPosts" EntityType="NewsPortalModel.NewsPost" />
+          <EntitySet Name="tblContacts" EntityType="NewsPortalModel.tblContact" />
+          <EntitySet Name="tblNewsType" EntityType="NewsPortalModel.tblNewsType" />
+          <EntitySet Name="SchdulePostConfig" EntityType="NewsPortalModel.SchdulePostConfig" />
+        </EntityContainer>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblRight">
+          <Key>
+            <PropertyRef Name="RightsId" />
+          </Key>
+          <Property Name="RightsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RightsName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="ImageName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+          <Property Name="NoofFailurAttempt" Type="Int32" />
+          <Property Name="IsBlocked" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="NewsPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EnglishTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="OdiaTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Thumbnail210" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Thumbnail279" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Thumbnail86" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HeaderImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EngShortDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ODShortDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ODContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SeoMeta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="PostedDate" Type="DateTime" Precision="0" />
+          <Property Name="PostedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="Tags" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PostedMonth" Type="Int32" />
+          <Property Name="PostedYear" Type="Int32" />
+          <Property Name="Frequency" Type="Int32" />
+          <Property Name="SlugUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsReviewed" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ReviewedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblContact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="PostedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblNewsType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OdiaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NewsType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsMenu" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SchdulePostConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostId" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PostedOn" Type="DateTime" Precision="3" />
+          <Property Name="ScheduleTime" Type="DateTime" Precision="3" />
+          <Property Name="TimeDelay" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NewsPortalModelStoreContainer" CdmEntityContainer="NewsPortalEntities" >
+          <EntitySetMapping Name="tblRoles">
+            <EntityTypeMapping TypeName="NewsPortalModel.tblRole">
+              <MappingFragment StoreEntitySet="tblRole">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRights">
+            <EntityTypeMapping TypeName="NewsPortalModel.tblRight">
+              <MappingFragment StoreEntitySet="tblRights">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RightsName" ColumnName="RightsName" />
+                <ScalarProperty Name="RightsId" ColumnName="RightsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="NewsPortalModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+                <ScalarProperty Name="NoofFailurAttempt" ColumnName="NoofFailurAttempt" />
+                <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsPosts">
+            <EntityTypeMapping TypeName="NewsPortalModel.NewsPost">
+              <MappingFragment StoreEntitySet="NewsPost">
+                <ScalarProperty Name="ReviewedBy" ColumnName="ReviewedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsReviewed" ColumnName="IsReviewed" />
+                <ScalarProperty Name="SlugUrl" ColumnName="SlugUrl" />
+                <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+                <ScalarProperty Name="PostedYear" ColumnName="PostedYear" />
+                <ScalarProperty Name="PostedMonth" ColumnName="PostedMonth" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="PostedOn" ColumnName="PostedOn" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="SeoMeta" ColumnName="SeoMeta" />
+                <ScalarProperty Name="ODContent" ColumnName="ODContent" />
+                <ScalarProperty Name="ODShortDesc" ColumnName="ODShortDesc" />
+                <ScalarProperty Name="EngShortDesc" ColumnName="EngShortDesc" />
+                <ScalarProperty Name="HeaderImageName" ColumnName="HeaderImageName" />
+                <ScalarProperty Name="Thumbnail86" ColumnName="Thumbnail86" />
+                <ScalarProperty Name="Thumbnail279" ColumnName="Thumbnail279" />
+                <ScalarProperty Name="Thumbnail210" ColumnName="Thumbnail210" />
+                <ScalarProperty Name="OdiaTitle" ColumnName="OdiaTitle" />
+                <ScalarProperty Name="EnglishTitle" ColumnName="EnglishTitle" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblContacts">
+            <EntityTypeMapping TypeName="NewsPortalModel.tblContact">
+              <MappingFragment StoreEntitySet="tblContact">
+                <ScalarProperty Name="PostedOn" ColumnName="PostedOn" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNewsType">
+            <EntityTypeMapping TypeName="NewsPortalModel.tblNewsType">
+              <MappingFragment StoreEntitySet="tblNewsType">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsMenu" ColumnName="IsMenu" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="NewsType" ColumnName="NewsType" />
+                <ScalarProperty Name="OdiaName" ColumnName="OdiaName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchdulePostConfig">
+            <EntityTypeMapping TypeName="NewsPortalModel.SchdulePostConfig">
+              <MappingFragment StoreEntitySet="SchdulePostConfig">
+                <ScalarProperty Name="TimeDelay" ColumnName="TimeDelay" />
+                <ScalarProperty Name="ScheduleTime" ColumnName="ScheduleTime" />
+                <ScalarProperty Name="PostedOn" ColumnName="PostedOn" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

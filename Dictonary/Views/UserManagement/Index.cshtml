@@ -1,0 +1,204 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h3>User Management</h3>
+<div ng-app="newsportalApp">
+    <div ng-controller="RolesArchiveCtrl">
+        <div class="row">
+            <label for="txtrole">Role Name</label>
+            <input type="text" id="txtrole" ng-model="RoleName" class="form-control" placeholder="Enter Role Name Here" />
+            <input type="button" value="Save" ng-click="Add()" class="btn btn-success" />
+        </div>
+        <div class="row" ng-hide="isSearching">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in Data" data-id="{{item.RoleId}}">
+                        <td>{{$index+1}}</td>
+                        <td>
+                            <span ng-hide="item.EditMode">{{item.RoleName}}</span>
+                            <input type="text" ng-model="item.RoleName" ng-show="item.EditMode" class="form-control" />
+                        </td>
+                        <td>
+                            <a class="Edit" href="javascript:;" ng-hide="item.EditMode" ng-click="Edit($index)">Edit</a>
+                            <a class="Update" href="javascript:;" ng-show="item.EditMode" ng-click="Update($index)">Update</a>
+                            <a class="Cancel" href="javascript:;" ng-show="item.EditMode" ng-click="Cancel($index)">Cancel</a>
+                            <a href="javascript:;" ng-hide="item.EditMode" ng-click="Delete(item.RoleId)">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <newsportal-pager page="{{page}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></newsportal-pager>
+            </div>
+        </div>
+        <div ng-hide="!isSearching">
+            <div class="progress progress-striped active">
+                <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+<script>
+    var newsportalApp = angular.module('newsportalApp', ['ngResource']);
+    /*************************************************************************/
+    // RESOURCES
+    newsportalApp.factory('Roles', ['$resource', function ($resource) {
+        return $resource('', {}, {
+            query: {
+                method: 'GET',
+                url: '/UserManagement/GetRole',
+                params: {format:'json'},
+                isArray: false
+               
+            },
+            save: {
+                method: 'Post',
+                url: '/UserManagement/InsertRole',
+                params: { format: 'json' },
+                isArray: false
+            },
+            update:
+            {
+                method: 'Post',
+                url: '/UserManagement/UpdateRole',
+                params: { format: 'json' },
+                isArray: false
+            },
+            delete:
+            {
+                method: 'Post',
+                url: '/UserManagement/DeleteRole',
+                params: { format: 'json' },
+                isArray: false
+            }
+
+        });
+    }]);
+
+    // CONTROLLERS
+    newsportalApp.controller('RolesArchiveCtrl', ['$scope','$window','Roles',
+        function ($scope,$window,Roles) {
+
+            $scope.isSearching = false;
+
+            $scope.page = 0;
+            $scope.pagesCount = 0;
+
+            $scope.search = function (page) {
+                page = page || 0;
+                $scope.isSearching = true;
+
+                Roles.query({ page: page, pageSize: 8 }).$promise.then(function (data) {
+                    $scope.page = data.Page;
+                    $scope.pagesCount = data.TotalPages;
+                    $scope.totalCount = data.TotalCount;
+                    $scope.Data = data.Items;
+                    $scope.isSearching = false;
+                }, function (error) {
+                    $scope.isSearching = false;
+                    });
+                $scope.isSearching = true;    
+            };
+            $scope.Add = function () {
+                var obj = {};
+                if (typeof ($scope.RoleName) == "undefined") {
+                    return;
+                }
+                obj.RoleName = $scope.RoleName;
+                Roles.save(JSON.stringify(obj));
+            };
+
+            $scope.search();
+
+            $scope.EditItem = {};
+            $scope.Edit = function (index) {
+                $scope.Data[index].EditMode = true;
+                $scope.EditItem.RoleName = $scope.Data[index].RoleName;
+
+            };
+            $scope.Cancel = function (index) {
+                $scope.Data[index].RoleName = $scope.EditItem.RoleName;
+                $scope.Data[index].EditMode = false;
+                $scope.EditItem = {};
+            };
+            //Updating an existing record to database.
+            $scope.Update = function (index) {
+                var role = $scope.Data[index];
+                var _role = {};
+                if (role.RoleName == "") {
+                    return;
+                }
+                _role.RoleId = role.RoleId;
+                _role.RoleName = role.RoleName
+                Roles.update(JSON.stringify(_role)).$promise.then(function (data) {
+                    role.EditMode = false;
+                });
+                
+            };
+            //Deleting an existing record from database.
+            $scope.Delete = function (roleId) {
+                if ($window.confirm("Do you want to delete this row?")) {
+                    var obj = {};
+                    obj.Id = roleId;
+
+                    Roles.delete(JSON.stringify(obj)).$promise.then(function (data) {
+                        $scope.Data = $scope.Data.filter(function (_role) {
+                            return _role.RoleId !== roleId;
+                        })
+                    }); 
+                }
+            };
+        }]
+    );
+// DIRECTIVES
+
+    newsportalApp.directive('newsportalPager', function () {
+    return {
+        scope: {
+            page: '@@',
+            pagesCount: '@@',
+            totalCount: '@@',
+            searchFunc: '&'
+        },
+        replace: true,
+        restrict: 'E',
+        templateUrl: '../Scripts/templates/pager-template.html',
+        controller: ['$scope', function ($scope) {
+            $scope.search = function (i) {
+                if ($scope.searchFunc) {
+                    $scope.searchFunc({ page: i });
+                }
+            };
+            $scope.range = function () {
+                if (!$scope.pagesCount) { return []; }
+                var step = 2;
+                var doubleStep = step * 2;
+                var start = Math.max(0, $scope.page - step);
+                var end = start + 1 + doubleStep;
+                if (end > $scope.pagesCount) { end = $scope.pagesCount; }
+
+                var ret = [];
+                for (var i = start; i != end; ++i) {
+                    ret.push(i);
+                }
+
+                return ret;
+            };
+        }]
+    }
+});
+</script>
+}

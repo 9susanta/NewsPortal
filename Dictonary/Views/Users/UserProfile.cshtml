@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h5 class="pgtitle"><i class="fas fa-user-alt menu-mr"></i> Profile</h5>
+<div ng-app="newsportalApp" class="row bg-smoke page-padding">
+    <div ng-controller="ProfileArchiveCtrl" class="col-lg-12 col-12 col-md-12">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-md-12 mt-4 mt-lg-0 mt-md-0">
+                <div class="row" ng-hide="isSearching">
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="card mt-2">
+                            <div class="card-header bg-header-3">
+                                <h5 class="ch"><i class="fas fa-user-alt"></i> View Profile</h5>
+                                <p>Your Profile Information</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive-sm">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img src="~/Images/Users/user1.png" />
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <input class="form-control form-control-sm input-rd-0" ng-model="UserName" placeholder="UserName" ng-disabled="true" />
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <input class="form-control form-control-sm input-rd-0" id="txtfull" ng-model="FullName" placeholder="UserName" />
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <input class="form-control form-control-sm input-rd-0" id="txtPhone"  ng-model="Phone" placeholder="UserName" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <input class="form-control form-control-sm input-rd-0"  ng-model="RoleName" placeholder="UserName" ng-disabled="true" />
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <input class="form-control form-control-sm input-rd-0" id="txtEmail"  ng-model="Email" placeholder="UserName"/>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-12 text-center">
+                                                    <input ng-click="Update()" value="Update" id="btnUpdate" type="button" class="btn btn-bg-11 text-light np-btn" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+ <script>
+    var newsportalApp = angular.module('newsportalApp', ['ngResource']);
+        newsportalApp.factory('Profile', ['$resource', function ($resource) {
+        return $resource('', {}, {
+            query: {
+                method: 'GET',
+                url: '/Users/GetCurrentUser',
+                params: { format: 'json' },
+                isArray: false
+
+            },
+            update:
+            {
+                method: 'Post',
+                url: '/Users/SetCurrentUserInfo',
+                params: { format: 'json' },
+                isArray: false
+            }
+        });
+    }]);
+ newsportalApp.controller('ProfileArchiveCtrl', ['$scope', '$window','Profile',
+     function ($scope, $window, Profile) {
+         Profile.query().$promise.then(function (data) {
+             var item = JSON.parse(data.user);
+             $scope.FullName = item.FullName;
+             $scope.Email = item.Email;
+             $scope.Phone = item.Phone;
+             $scope.UserName = item.UserName;
+             $scope.RoleName = item.RoleName;
+             loaderHide();
+         }, function (error) {
+             $scope.isSearching = false;
+             });
+         $scope.Update = function () {
+             loaderShow();
+             var obj = {};
+             if (typeof ($scope.FullName) == "undefined" ||($scope.FullName)=="") {
+                 $('#btnUpdate').blur();
+                 alertify.alert('Full Name', 'Full Name Cannot be blank!', function () { document.querySelector("#txtfull").focus(); });
+                 return;
+             }
+             if (typeof ($scope.Phone) == "undefined" || ($scope.Phone) == "") {
+                 $('#btnUpdate').blur();
+                 alertify.alert('Phone Number', 'Phone Number Cannot be blank!', function () { document.querySelector("#txtPhone").focus(); });
+                 return;
+             }
+             if (typeof ($scope.Email) == "undefined" || ($scope.Email) == "") {
+                 $('#btnUpdate').blur();
+                 alertify.alert('Email Address', 'Email Address Cannot be blank!', function () { document.querySelector("#txtEmail").focus(); });
+                 return;
+             }
+             obj.FullName = $scope.FullName;
+             obj.Phone = $scope.Phone;
+             obj.Email = $scope.Email;
+             Profile.update(JSON.stringify(obj)).$promise.then(function (data) {
+                 if (data.user != undefined) {
+                     loaderHide();
+                     alertify.alert('Profile Info', 'Profile Information Successfully !');
+                 }
+             });
+
+         };
+ }]);
+</script>
+}
+
+

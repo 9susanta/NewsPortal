@@ -1,0 +1,231 @@
+﻿@{
+    ViewBag.Title = "Dashbord";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h5 class="pgtitle text-uppercase"><i class="fas fa-laptop menu-mr"></i> News Dashbord</h5>
+<div ng-app="newsportalApp" class="row bg-smoke">
+    <div class="col-lg-12">
+        <div class="card mt-4 mb-4">
+            <div class="card-header bg-header-1">
+                <h5 class="ch"><i class="fas fa-laptop"></i> List</h5>
+                <p>View Your Contribution</p>
+            </div>
+            <div ng-controller="NewsArchiveCtrl" class="card-body">
+                <div class="row">
+                    <div class="col-lg-1">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" ng-model="Checked" ng-change="Oncheked()" class="form-check-input" ng-checked="true"/>
+                                Full Data
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 form-inline">
+                        <label>Start Date</label>
+                        <input type="text" id="txtstart" ng-model="startdt" ng-disabled="IsChecked" class="form-control form-control-sm" data-date-format="dd/mm/yyyy">
+                    </div>
+                    <div class="col-lg-3 form-inline">
+                        <label>End Date</label>
+                        <input type="text" id="txtend" ng-model="enddt" ng-disabled="IsChecked" class="form-control form-control-sm" data-date-format="dd/mm/yyyy">
+                    </div>
+                    <div class="col-lg-3 mt-2 mt-lg-0">
+                        <button type="button" id="btnLoad" class="btn btn-bg-13 text-light np-btn" ng-disabled="IsChecked" ng-click="btnLoad()">Load</button>
+                    </div>
+                </div>
+                <div class="row mt-2 mt-lg-0">
+                    <div class="col-lg-12">
+                        <div class="text-right"><a class="btn btn-pink np-btn" href="@Url.Action("Index", "NewsOprations")"><i class="fas fa-plus-circle"></i> Add New</a></div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-lg-12">
+                        <div class="table-responsive-sm table-responsive table-responsive-lg table-responsive-md text-nowrap">
+                            <table st-pipe="news.callServer" st-table="newss" class="table table-1">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th scope="row"><input st-search="OdiaTitle" class="form-control-sm" /></th>
+                                        <th><input st-search="EnglishTitle" class="form-control-sm" /></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><input st-search="Tags" class="form-control-sm" /></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>No of View</th>
+                                        <th scope="col">O Title</th>
+                                        <th scope="col">E Title</th>
+                                        <th st-sort="IsReviewed">Action</th>
+                                        <th scope="col" st-sort="Category">Category</th>
+                                        <th scope="col">Tag</th>
+                                        <th scope="col" st-sort="Created">Posetd By</th>
+                                        <th scope="col" st-sort="PostedOn">Posetd On</th>
+                                        <th scope="col" st-sort="Reviewed">Reviewed By</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-show="!news.isLoading">
+                                    <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in newss track by $index">
+                                        <td>
+                                            <a class="btn bg-teal btn-cyan np-btn" href="@Url.Action("Index", "NewsOprations")?NewsId={{row.Id}}">
+                                                <i class="fas fa-eye"></i> View
+                                                @if (Context.User.Identity.IsAuthenticated)
+                                                {
+                                                    <span class="stat"><i ng-class="row.IsReviewed==true?'fas fa-check':'fas fa-clock'"></i></span>
+                                                }
+                                            </a>
+                                        </td>
+                                        <td scope="row"><strong>{{row.Frequency}}</strong></td>
+                                        <td scope="row">{{row.OdiaTitle}}</td>
+                                        <td>{{row.EnglishTitle}}</td>
+                                        <td><span class="badge badge-pill" ng-class="row.IsReviewed==true?'badge-success':'badge-danger'">{{row.IsReviewed==true?'APPROVED':'PENDING'}}</span></td>
+                                        <td>{{row.CategoryOdia}}</td>
+                                        <td>{{row.Tags}}</td>
+                                        <td>{{row.Created}}</td>
+                                        <td>{{row.PostedOn | dateFilter }}</td>
+                                        <td>{{row.Reviewed}}</td>
+                                        <td>
+                                            <a class="btn bg-teal btn-cyan np-btn" href="@Url.Action("Index", "NewsOprations")?NewsId={{row.Id}}">
+                                                <i class="fas fa-eye"></i> View
+                                                @if (Context.User.Identity.IsAuthenticated)
+                                                {
+                                                    <span class="stat"><i ng-class="row.IsReviewed==true?'fas fa-check':'fas fa-clock'"></i></span>
+                                                }
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="10" class="text-lg-center text-sm-left text-left">
+                                            <div st-pagination="" st-items-by-page="3"></div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Scripts/DatePicker/bootstrap-datepicker3.min.css" rel="stylesheet" />
+@section scripts
+{
+    <script src="~/Scripts/DatePicker/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/smart-table.min.js"></script>
+    <script>
+        var newsportalApp = angular.module('newsportalApp', ['ngResource', 'smart-table']);
+        newsportalApp.filter("dateFilter", function () {
+            return function (x) {
+                return x.substring(0, 10) + ' ' + x.substring(11, 16);
+            };
+        });
+        newsportalApp.factory('NewsPostFc', ['$resource', function ($resource) {
+            return $resource('', {}, {
+                query: {
+                    method: 'GET',
+                    url: '/NewsOprations/GetAllNews',
+                    params: { format: 'json' },
+                    isArray: false
+                }
+            });
+        }]);
+        newsportalApp.controller('NewsArchiveCtrl', ['$scope', '$window', 'NewsPostFc', '$timeout',
+            function ($scope, $window, NewsPostFc, $timeout) {
+                $scope.Checked = true;
+                $('#txtstart').datepicker({
+                    todayHighlight: true
+                });
+                $('#txtend').datepicker({
+                    todayHighlight: true
+                });
+                $scope.news = {};
+                $scope.newss = [];
+                $scope.news.rp = 3;
+                $scope.news.from = 0;
+                $scope.news.isLoading = false;
+                $scope.initLoad = false;
+                $scope.news.callServer = function callServer(tableState, ctrl) {
+                    if (!$scope.ctrl && ctrl) {
+                        $scope.ctrl = ctrl;
+                    }
+                    if (!$scope.initLoad) {
+                        return;
+                    }
+                    $scope.news.isLoading = true;
+                    var pagination = tableState.pagination;
+
+                    var start = pagination.start || 0;
+                    var number = pagination.number || $scope.news.rp;
+
+                    $scope.news.from = start;
+
+                    var page = Math.ceil(start / $scope.news.rp) + 1;
+                    $scope.newss = [];
+
+                    NewsPostFc.query({ page: page, startdt: $scope.startdt,enddt :$scope.enddt }).$promise.then(function (data) {
+                        angular.forEach(JSON.parse(data.data), function (item, key) {
+                            $scope.newss.push(item);
+                        });
+                        var filtered = tableState.search.predicateObject;
+                        var item = tableState.sort.predicate
+                        var jtem = tableState.sort.reverse;
+                        var totcount = parseInt(JSON.parse(data.total_pages)[0]["total_count"]);
+                        tableState.pagination.numberOfPages = parseInt(Math.ceil(totcount / 10));
+                        tableState.pagination.totalItemCount = totcount;
+                        tableState.pagination.start = start;
+                        tableState.pagination.number = 3;
+                        $scope.news.tablestate = tableState;
+                        $scope.news.isLoading = false;
+                        loaderHide();
+
+                    }, function (error) {
+                        debugger;
+                    });
+                }
+                $scope.init = function () {
+                    loaderShow();
+                    $timeout(function () {
+                        $scope.initLoad = true;
+                        var tableState = $scope.ctrl.tableState();
+                        $scope.news.callServer(tableState, $scope.ctrl);
+                    }, 1000);
+                }
+                $scope.IsChecked = true;
+                $scope.Oncheked = function () {
+                    if ($scope.Checked == true) {
+                        $scope.IsChecked = true;
+                    }
+                    else {
+                        $scope.IsChecked = false;
+                    }
+                }
+                $scope.btnLoad = function () {
+                    if (typeof ($scope.startdt) == "undefined" || $scope.startdt=="") {
+                        $('#btnLoad').blur();
+                        alertify.alert('Start Date', 'Please Enter Start Date!', function () { document.querySelector("#txtstart").focus(); });
+                        return;
+                    }
+                    if (typeof ($scope.enddt) == "undefined" || $scope.enddt == "") {
+                        $('#btnLoad').blur();
+                        alertify.alert('End Date', 'Please Enter End Date!', function () { document.querySelector("#txtend").focus(); });
+                        return;
+                    }
+                    $scope.init();
+                }
+                $scope.init();
+
+            }]
+        );
+    </script>
+}
+
+
+

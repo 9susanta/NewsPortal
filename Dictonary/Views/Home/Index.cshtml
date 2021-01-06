@@ -1,0 +1,252 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row npmr-top">
+    <div class="col-sm-12">
+        <div class="row newsmargin">
+            <div class="col-lg-4 col-sm-12 col-md-12">
+                <div id="latestcarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
+                    <ul class="carousel-indicators">
+                        <li data-target="#latestcarousel" ng-repeat="latest in LatestData" ng-class="{active: ($index === 0)}" data-slide-to="{{$index}}"></li>
+                    </ul>
+                    <div class="carousel-inner">
+                        <div ng-repeat="latest in LatestData" class="carousel-item" ng-class="{active: ($index === 0)}">
+                            <img src="{{url}}/Uploads/{{latest.Thumbnail279}}" alt="Images">
+                            <div class="carousel-caption">
+                                <h5><a class="text-white" href="{{url}}/News/{{latest.NewsType}}/{{latest.PostedYear}}/{{latest.PostedMonth}}/{{latest.Id}}/{{latest.SlugUrl}}">{{latest.OdiaTitle}}</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#latestcarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#latestcarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12 col-md-12">
+                <div ng-repeat="latest in LatestData" class="col-lg-12 col-sm-12 col-xl-12">
+                    <div class="row">
+                        <div class="col-12 npborder-bottom np-zeropadding" ng-class="{'magin-top':($index !== 0)}">
+                            <span><a class="text-dark" href="{{url}}/News/{{latest.NewsType}}/{{latest.PostedYear}}/{{latest.PostedMonth}}/{{latest.Id}}/{{latest.SlugUrl}}">{{(latest.OdiaTitle | limitTo: 50)}}<span class="dot">{{(latest.OdiaTitle.length > 50 ? '...' : '')}}</span></a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12 col-md-12 social">
+                <ul>
+                    <li><a href="https://www.facebook.com/khabarodianews/"><i class="fab fa-facebook-square fackbook"></i></a></li>
+                    <li><i class="fab fa-twitter-square twitter"></i></li>
+                    <li><i class="fab fa-google-plus-square googleplus"></i></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row no-gutters nua-khbar npborder newsmargin">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div class="row no-gutters">
+                    <div class="col-lg-12 col-sm-12 col-xl-12">
+                        <h3 class="ns-heading">
+                            <a href="#">
+                                <span class="nstitle bg-pink">
+                                    ବଡ ଖବର
+                                </span>
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="row no-gutters" id="topsec">
+                    <div ng-repeat="latest in LatestData" class="col-lg-2 col-12 col-sm-6 col-xl-2 mx-auto">
+                        <a href="{{url}}/News/{{latest.NewsType}}/{{latest.PostedYear}}/{{latest.PostedMonth}}/{{latest.Id}}/{{latest.SlugUrl}}"><img bn-lazy-src="{{url}}/Uploads/{{latest.Thumbnail210}}" alt="Images"></a>
+                        <span class="spancat spancat-2 ng-binding">{{latest.Category}}</span>
+                        <div>
+                            <h5 class="news-1"><a class="text-dark" href="{{url}}/News/{{latest.NewsType}}/{{latest.PostedYear}}/{{latest.PostedMonth}}/{{latest.Id}}/{{latest.SlugUrl}}">{{(latest.OdiaTitle | limitTo: 50)}}<span class="dot">{{(latest.OdiaTitle.length > 50 ? '...' : '')}}</span></a></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 tealback">
+                <h3 class="text-light np-header">- ଫଟୋ ଖବର -</h3>
+                <div class="row no-gutters" id="topsecone">
+                    <div ng-repeat="latest in PhtNews" class="col-lg-2 col-sm-6 col-xl-2">
+                        <a href="{{url}}/News/{{latest.NewsType}}/{{latest.PostedYear}}/{{latest.PostedMonth}}/{{latest.Id}}/{{latest.SlugUrl}}"><img bn-lazy-src="~/Uploads/{{latest.Thumbnail210}}" alt="Images"></a>
+                        <div>
+                            <h5 class="news-1"><a class="text-light" href="{{url}}/News/{{latest.NewsType}}/{{latest.PostedYear}}/{{latest.PostedMonth}}/{{latest.Id}}/{{latest.SlugUrl}}">{{(latest.OdiaTitle | limitTo: 50)}}<span class="dot">{{(latest.OdiaTitle.length > 50 ? '...' : '')}}</span></a></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-lg-12 text-center">
+                        <button class="btn bg-teal text-light np-btn" ng-disabled="btnpht" ng-click="LoadMore('Photo')">ଅଧିକ ଖବର...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row newsmargin">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div ng-repeat="menu in lvMenu" ng-if="$index % 3 == 0" class="row npborder npmr-top nppadding-tpbtm">
+                    <div class="col-lg-4 npborder-right np-padtop">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-xl-12">
+                                <h3 class="ns-heading">
+                                    <a href="#">
+                                        <span class="nstitle bg-pink">
+                                            {{lvMenu[$index].OdiaName}}
+                                        </span>
+                                    </a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div ng-repeat="data in HomeData | filter : {CategoryId:lvMenu[$index].Id}" class="col-lg-12 col-sm-12 col-xl-12">
+                                <div class="row no-gutters">
+                                    <div class="col-3 newsminhigt" ng-if="$index == 0">
+                                        <a href="{{url}}/News/{{data.NewsType}}/{{data.PostedYear}}/{{data.PostedMonth}}/{{data.Id}}/{{data.SlugUrl}}"><img bn-lazy-src="~/Uploads/{{data.Thumbnail86}}" /></a>
+                                    </div>
+                                    <div class="col-9 margin_div ns-btmtop" ng-if="$index == 0">
+                                        <div class="row no-gutters ">
+                                            <div class="col-12">
+                                                <h5 class="news-1"><a class="text-dark" href="{{url}}/News/{{data.NewsType}}/{{data.PostedYear}}/{{data.PostedMonth}}/{{data.Id}}/{{data.SlugUrl}}">{{(data.OdiaTitle | limitTo: 50)}}<span class="dot">{{(data.OdiaTitle.length > 50 ? '...' : '')}}</span></a></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row fristnew no-gutters ">
+                                            <div class="col-12">
+                                                <span class="timespn">{{data.PostedOn | date:'MMM dd, yyyy'}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 npborder-bottom" ng-if="$index != 0">
+                                        <span><a class="text-dark" href="{{url}}/News/{{data.NewsType}}/{{data.PostedYear}}/{{data.PostedMonth}}/{{data.Id}}/{{data.SlugUrl}}">{{(data.OdiaTitle | limitTo: 50)}}<span class="dot">{{(data.OdiaTitle.length > 50 ? '...' : '')}}</span></a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 npborder-right np-padtop">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-xl-12">
+                                <h3 class="ns-heading">
+                                    <a href="#">
+                                        <span class="nstitle bg-pink">
+                                            {{lvMenu[$index + 1].OdiaName}}
+                                        </span>
+                                    </a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div ng-repeat="data in HomeData | filter : {CategoryId:lvMenu[$index+1].Id}" class="col-lg-12 col-sm-12 col-xl-12">
+                                <div class="row no-gutters">
+                                    <div class="col-3 newsminhigt" ng-if="$index == 0">
+                                        <a href="{{url}}/News/{{data.NewsType}}/{{data.PostedYear}}/{{data.PostedMonth}}/{{data.Id}}/{{data.SlugUrl}}"><img bn-lazy-src="~/Uploads/{{data.Thumbnail86}}" /></a>
+                                    </div>
+                                    <div class="col-9 margin_div ns-btmtop" ng-if="$index == 0">
+                                        <div class="row no-gutters">
+                                            <div class="col-12">
+                                                <h5 class="news-1"><a class="text-dark" href="{{url}}/News/{{data.NewsType}}/{{data.PostedYear}}/{{data.PostedMonth}}/{{data.Id}}/{{data.SlugUrl}}">{{(data.OdiaTitle | limitTo: 50)}}<span class="dot">{{(data.OdiaTitle.length > 50 ? '...' : '')}}</span></a></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row fristnew no-gutters">
+                                            <div class="col-12">
+                                                <span class="timespn">{{data.PostedOn | date:'MMM dd, yyyy'}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 npborder-bottom" ng-if="$index != 0">
+                                        <span><a class="text-dark" href="{{url}}/News/{{data.NewsType}}/{{data.PostedYear}}/{{data.PostedMonth}}/{{data.Id}}/{{data.SlugUrl}}">{{(data.OdiaTitle | limitTo: 50)}}<span class="dot">{{(data.OdiaTitle.length > 50 ? '...' : '')}}</span></a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 np-padtop">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-xl-12">
+                                <h3 class="ns-heading">
+                                    <a href="#">
+                                        <span class="nstitle bg-pink">
+                                            {{lvMenu[$index + 2].OdiaName}}
+                                        </span>
+                                    </a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div ng-repeat="data in HomeData | filter : {CategoryId:lvMenu[$index+2].Id}" class="col-lg-12 col-sm-12 col-xl-12">
+                                <div class="row no-gutters">
+                                    <div class="col-3 newsminhigt" ng-if="$index == 0">
+                                        <a href="{{url}}/News/{{data.NewsType}}/{{data.PostedYear}}/{{data.PostedMonth}}/{{data.Id}}/{{data.SlugUrl}}"><img bn-lazy-src="~/Uploads/{{data.Thumbnail86}}" /></a>
+                                    </div>
+                                    <div class="col-9 margin_div ns-btmtop" ng-if="$index == 0">
+                                        <div class="row no-gutters">
+                                            <div class="col-12">
+                                                <h5 class="news-1"><a class="text-dark" href="{{url}}/News/{{data.NewsType}}/{{data.PostedYear}}/{{data.PostedMonth}}/{{data.Id}}/{{data.SlugUrl}}">{{(data.OdiaTitle | limitTo: 50)}}<span class="dot">{{(data.OdiaTitle.length > 50 ? '...' : '')}}</span></a></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row fristnew no-gutters">
+                                            <div class="col-12">
+                                                <span class="timespn">{{data.PostedOn | date:'MMM dd, yyyy'}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 npborder-bottom" ng-if="$index != 0">
+                                        <span><a class="text-dark" href="{{url}}/News/{{data.NewsType}}/{{data.PostedYear}}/{{data.PostedMonth}}/{{data.Id}}/{{data.SlugUrl}}">{{(data.OdiaTitle | limitTo: 50)}}<span class="dot">{{(data.OdiaTitle.length > 50 ? '...' : '')}}</span></a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 tealback social">
+                <h5 class="text-light">Social Media</h5>
+                <span class="text-light">Follow us on social media</span>
+                <ul>
+                    <li><a href="https://www.facebook.com/khabarodianews/"><i class="fab fa-facebook-square fackbook text-light"></i></a></li>
+                    <li><i class="fab fa-twitter-square text-light"></i></li>
+                    <li><i class="fab fa-google-plus-square text-light"></i></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row no-gutters nua-khbar npborder npmr-top">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div class="row no-gutters">
+                    <div class="col-lg-12 col-sm-12 col-xl-12">
+                        <h3 class="ns-heading">
+                            <a href="#">
+                                <span class="nstitle bg-pink">
+                                    ବହୁ ଚର୍ଚ୍ଚିତ ଖବର
+                                </span>
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="row no-gutters" id="topsecone">
+                    <div ng-repeat="latest in PlrNews" class="col-lg-2 col-12 col-sm-6 col-xl-2 mx-auto">
+                        <a class="text-dark" href="{{url}}/News/{{latest.NewsType}}/{{latest.PostedYear}}/{{latest.PostedMonth}}/{{latest.Id}}/{{latest.SlugUrl}}"><img bn-lazy-src="~/Uploads/{{latest.Thumbnail210}}" alt="Images" /></a>
+                        <span class="spancat spancat-2 ng-binding">{{latest.Category}}</span>
+                        <div>
+                            <h5 class="news-1"><a class="text-dark" href="{{url}}/News/{{latest.NewsType}}/{{latest.PostedYear}}/{{latest.PostedMonth}}/{{latest.Id}}/{{latest.SlugUrl}}">{{(latest.OdiaTitle | limitTo: 50)}}<span class="dot">{{(latest.OdiaTitle.length > 50 ? '...' : '')}}</span></a></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-lg-12 text-center">
+                        <button class="btn bg-teal text-light np-btn" ng-disabled="btnplr" ng-click="LoadMore('Popular')">ଅଧିକ ଖବର ଦେଖନ୍ତୁ...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/home")
+
+}

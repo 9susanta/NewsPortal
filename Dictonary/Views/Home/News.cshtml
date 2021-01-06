@@ -1,0 +1,257 @@
+﻿@using System.Data
+@model DataTable
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Title = Model.Rows[0]["OdiaTitle"] + " - Khabar Odia";
+    var request = ViewBag.Url;
+    ViewBag.Url = request.Url;
+    ViewBag.mainUrl = request.Url.Scheme + "://" + request.Url.Authority;
+    ViewBag.ImgUrl = ViewBag.mainUrl + "/Uploads/" + Model.Rows[0]["HeaderImageName"].ToString();
+    ViewBag.Desc = Model.Rows[0]["ODShortDesc"];
+}
+<div class="row">
+    <div class="col-lg-12 custombrecum">
+        <span>Home</span><span>></span><span>@Model.Rows[0]["Category"]</span><span>></span><span>@Model.Rows[0]["OdiaTitle"]</span>
+</div>
+    <div class="col-lg-12">
+        <div class="row no-gutters mb-4">
+            <div class="col-lg-2 col-12 col-md-2 col-sm-12 order-2 order-sm-12 order-md-1 order-lg-1 mb-3">
+                <div class="row no-gutters">
+                    <div class="col-lg-12 npborder pd-20">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-xl-12">
+                                <h3 class="ns-heading">
+                                    <a href="#">
+                                        <span class="nstitle bg-pink">
+                                            ବହୁ ଚର୍ଚ୍ଚିତ ଖବର
+                                        </span>
+                                    </a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row list-view newsmargin" ng-repeat="item in PopularData">
+                                    <div class="col-lg-12 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <a href="{{url}}/News/{{item.NewsType}}/{{item.PostedYear}}/{{item.PostedMonth}}/{{item.Id}}/{{item.SlugUrl}}"><img class="imgcat" bn-lazy-src="{{url}}/Uploads/{{item.Thumbnail210}}" alt="Images"></a>
+                                                <span class="spancat spancat-1">{{item.Category}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-sm-12">
+                                                <a class="text-dark" href="{{url}}/News/{{item.NewsType}}/{{item.PostedYear}}/{{item.PostedMonth}}/{{item.Id}}/{{item.SlugUrl}}">{{(item.OdiaTitle | limitTo: 30)}}<span class="dot">{{(item.OdiaTitle.length > 30 ? '...' : '')}}</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button class="load btn np-btn bg-teal text-light" ng-disabled="btnpopular" ng-click="LoadMore('Popular')">ଅଧିକ ଖବର ଦେଖନ୍ତୁ...</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 col-12 col-md-7 col-sm-12 order-1 order-sm-first order-md-2 order-lg-2 mb-3">
+                <div class="row no-gutters pl-lg-3 pr-lg-3">
+                    <div class="col-lg-12 npborder pd-20">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3 class="text-pink header-title">@Model.Rows[0]["OdiaTitle"]</h3>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-lg-12">
+                                <div class="float-left">
+                                    <span class="publish">By</span><span class="publish-on beu">Beuro</span><span></span><span class="publish">Last Updated</span><span class="publish-on">@Convert.ToDateTime(Model.Rows[0]["PostedOn"]).ToString("MMM dd yyyy")</span>
+                                </div>
+                                <div class="float-right">
+                                    @foreach (var link in Model.Rows[0]["Tags"].ToString().Split(','))
+                                    {
+                                        <span class="bg-pink newstag">
+                                            <a class="text-light" href="@ViewBag.mainUrl/Home/Topic/@link">@link</a>
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-lg-12">
+                                <img class="imgheight" bn-lazy-src="@ViewBag.ImgUrl" alt="Images">
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-lg-12 social social-1">
+                                <span class="float-left">ଏହାକୁ ସେୟାର କରନ୍ତୁ</span>
+                                <ul class="float-left">
+                                    <li><a href="#" ng-click="fbshare()"><i class="fab fa-facebook-square fackbook"></i></a></li>
+                                    <li><i class="fab fa-twitter-square twitter"></i></li>
+                                    <li><i class="fab fa-google-plus-square googleplus"></i></li>
+                                    <li><a class="d-lg-none d-inline" href="{{whappshare}}"><i class="fab fa-whatsapp-square whatapp"></i></a></li>
+                                    <li><a class="d-lg-inline d-none" href="{{whappshareweb}}"><i class="fab fa-whatsapp-square whatapp"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-lg-12" id="newscontainer">
+                                @Html.Raw(@Model.Rows[0]["ODContent"].ToString())
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-lg-12 social social-1">
+                                <span class="float-left">ଏହାକୁ ସେୟାର କରନ୍ତୁ</span>
+                                <ul class="float-left">
+                                    <li><a href="#" ng-click="fbshare()"><i class="fab fa-facebook-square fackbook"></i></a></li>
+                                    <li><i class="fab fa-twitter-square twitter"></i></li>
+                                    <li><i class="fab fa-google-plus-square googleplus"></i></li>
+                                    <li><a class="d-lg-none d-inline" href="{{whappshare}}"><i class="fab fa-whatsapp-square whatapp"></i></a></li>
+                                    <li><a class="d-lg-inline d-none" href="{{whappshareweb}}"><i class="fab fa-whatsapp-square whatapp"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <span class="float-left">ଆମକୁ ଫେସବୁକ ରେ ଲାଇକି ଏବଂ ସେୟାର କରନ୍ତୁ </span>
+                                <div id="fb-root"></div>
+                                <div class="fb-like fbbtn" data-href="https://www.facebook.com/khabarodianews/" data-width="" data-layout="button" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-lg-6">
+                                <a id="btnPrev" class="float-left btn bg-pink np-btn text-light" href="{{prevurl}}"><i class="fas fa-angle-left"></i> {{(prevnews | limitTo: 30)}}<span class="dot">{{(prevnews.length > 30 ? '...' : '')}}</span></a>
+                            </div>
+                            <div class="col-lg-6 mt-3 mt-lg-0">
+                                <a id="btnPrev" class="float-right btn bg-pink np-btn text-light" href="{{nexturl}}">{{(nextnews | limitTo: 30)}}<span class="dot">{{(nextnews.length > 30 ? '...' : '')}}</span> <i class="fas fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters pl-lg-3 pr-lg-3 mt-4">
+                    <div class="col-lg-12 npborder pd-20">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-xl-12">
+                                <h3 class="ns-heading">
+                                    <a href="#">
+                                        <span class="nstitle bg-pink">
+                                            ନୂଆ ଖବର
+                                        </span>
+                                    </a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div ng-repeat="menu in LatestData" ng-if="$index % 3 == 0" class="row nppadding-tpbtm">
+                                    <div class="col-lg-4 np-padtop">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-sm-12 col-12">
+                                                <a href="{{url}}/News/{{LatestData[$index].NewsType}}/{{LatestData[$index].PostedYear}}/{{LatestData[$index].PostedMonth}}/{{LatestData[$index].Id}}/{{LatestData[$index].SlugUrl}}"><img class="imgcat" bn-lazy-src="{{url}}/Uploads/{{LatestData[$index].Thumbnail210}}" alt="Images" /></a>
+                                                <span class="spancat spancat-1">{{LatestData[$index].Category}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-sm-12">
+                                                <strong><a class="text-dark" href="{{url}}/News/{{LatestData[$index].NewsType}}/{{LatestData[$index].PostedYear}}/{{LatestData[$index].PostedMonth}}/{{LatestData[$index].Id}}/{{LatestData[$index].SlugUrl}}">{{LatestData[$index].OdiaTitle}}</a></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 np-padtop" ng-if="LatestData[$index + 1].Thumbnail279!=undefined">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-sm-12 col-12">
+                                                <a href="{{url}}/News/{{LatestData[$index + 1].NewsType}}/{{LatestData[$index + 1].PostedYear}}/{{LatestData[$index + 1].PostedMonth}}/{{LatestData[$index + 1].Id}}/{{LatestData[$index + 1].SlugUrl}}"><img class="imgcat" bn-lazy-src="{{url}}/Uploads/{{LatestData[$index + 1].Thumbnail279}}" alt="Images"/></a>
+                                                <span class="spancat spancat-1">{{LatestData[$index + 1].Category}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-sm-12">
+                                                <strong><a class="text-dark" href="{{url}}/News/{{LatestData[$index + 1].NewsType}}/{{LatestData[$index + 1].PostedYear}}/{{LatestData[$index + 1].PostedMonth}}/{{LatestData[$index + 1].Id}}/{{LatestData[$index + 1].SlugUrl}}">{{LatestData[$index + 1].OdiaTitle}}</a></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 np-padtop" ng-if="LatestData[$index + 2].Thumbnail279!=undefined">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-sm-12 col-12">
+                                                <a href="{{url}}/News/{{LatestData[$index + 2].NewsType}}/{{LatestData[$index + 2].PostedYear}}/{{LatestData[$index + 2].PostedMonth}}/{{LatestData[$index + 2].Id}}/{{LatestData[$index + 2].SlugUrl}}"><img class="imgcat" bn-lazy-src="{{url}}/Uploads/{{LatestData[$index + 2].Thumbnail279}}" alt="Images" /></a>
+                                                <span class="spancat spancat-1">{{LatestData[$index + 2].Category}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-sm-12">
+                                                <strong><a class="text-dark" href="{{url}}/News/{{LatestData[$index + 2].NewsType}}/{{LatestData[$index + 2].PostedYear}}/{{LatestData[$index + 2].PostedMonth}}/{{LatestData[$index + 2].Id}}/{{LatestData[$index + 2].SlugUrl}}">{{LatestData[$index + 2].OdiaTitle}}</a></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button class="load btn np-btn bg-teal text-light" ng-disabled="btnlatest" ng-click="LoadMore('Latest')">ଅଧିକ ଖବର ଦେଖନ୍ତୁ...</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-12 col-md-23 col-sm-12 order-3 order-sm-3 order-md-2 order-lg-3 mb-1">
+                <div class="row no-gutters newsmargin">
+                    <div class="col-lg-12 npborder pd-20">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-xl-12">
+                                <h3 class="ns-heading">
+                                    <a href="#">
+                                        <span class="nstitle bg-pink">
+                                            ସମ୍ବନ୍ଧିତ
+                                        </span>
+                                    </a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <realatedlist data="RelatedData" mainurl="{{url}}"></realatedlist>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button class="load btn np-btn bg-teal text-light" ng-disabled="btnrelated" ng-click="LoadMore('Related')">ଅଧିକ ଖବର ଦେଖନ୍ତୁ...</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-lg-12 npborder pd-20">
+                        <div class="calendar-wrapper"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12 tealback social">
+                        <h5 class="text-light">Social Media</h5>
+                        <span class="text-light">Follow us on social media</span>
+                        <ul>
+                            <li><a href="https://www.facebook.com/khabarodianews/"><i class="fab fa-facebook-square fackbook text-light"></i></a></li>
+                            <li><i class="fab fa-twitter-square text-light"></i></li>
+                            <li><i class="fab fa-google-plus-square text-light"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Styles.Render("~/Content/calender")
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v5.0&appId=1423881811109900&autoLogAppEvents=1"></script>
+@section scripts
+{
+    @Scripts.Render("~/bundles/calendar")
+    @Scripts.Render("~/bundles/sanitize")
+    @Scripts.Render("~/bundles/news")
+}

@@ -1,0 +1,740 @@
+﻿
+@{
+    ViewBag.Title = "News Post";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Scripts/TagInput/bootstrap-tagsinput.css" rel="stylesheet" />
+<h5 class="pgtitle"><i class="fas fa-newspaper menu-mr"></i> News Post</h5>
+<div ng-app="newsportalApp" class="row bg-smoke">
+    <div ng-controller="NewsArchiveCtrl" class="col-lg-12 col-12 col-md-12">
+        <div class="card mt-4 mb-4">
+            <div class="card-header bg-header-1">
+                <h5 class="ch"><i class="fas fa-newspaper"></i> News Post</h5>
+                <p>Publish your post  here</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6 col-12 col-md-12">
+                        <label>News Catagory</label>
+                        <select id="ddlCatagory" ng-change="oncatchange(selectedCatagory)" ng-model="selectedCatagory" ng-init="selectedCatagory='0'" class="form-control nw-text form-control-sm">
+                            <option ng-selected="true" value="0">{{DefaultLabel}}</option>
+                            <option value="{{val.Id}}" ng-repeat="val in CategoryData">{{val.OdiaName}}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 col-12 col-md-12" ng-hide="IsPhoto">
+                        <label>News Tag</label>
+                        <input type="text" id="txtNewTag" placeholder="e.g ଅପରାଧ,ଭୁବନେଶ୍ୱର,ଡକାୟତି" data-role="tagsinput" class="form-control nw-text form-control-sm" ng-model="NewsTag" />
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-6 col-12 col-md-12">
+                        <label>English Title</label>
+                        <input type="text" id="txtEngTitle" placeholder="e.g Elder Brother Kills Younger Brother in Heart of the City" class="form-control nw-text form-control-sm" ng-model="EngTitle" />
+                    </div>
+                    <div class="col-lg-6 col-sm-12 col-md-12">
+                        <label>Odia Title</label>
+                        <input type="text" id="txtOdiaTitle" placeholder="e.g ସହର ମଝିରେ ବଡ ଭାଇ ହତ୍ୟା କଲା ସାନ ଭାଇ କୁ" class="form-control nw-text form-control-sm" ng-model="OdiaTitle" />
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12 col-md-12" ng-hide="IsPhoto">
+                        <label>Odia Short Desciption</label>
+                        <textarea type="text" id="txtOdiaShortDesc" placeholder="ଦୁଇ ଲାଇନି ରେ ଖବର ବିଷୟରେ କିଛି ଲେଖନ୍ତୁ " class="form-control nw-text form-control-sm" ng-model="OdiaShortDescri"></textarea>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 col-md-12">
+                        <label>SEO Meta</label>
+                        <input type="text" id="txtSeoMeta" placeholder="e.g Murder in bhubanewsar,Brother kills Brother in Odisha,Latest News in odisha" class="form-control nw-text form-control-sm" ng-model="SeoMeta" />
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label for="btnUpload">Headlines Image</label>
+                            <div>
+                                <input type="button" class="btn btn-pink" id="btnUpload" value="Upload image!">
+                                <input type="file" id="fileUploader" ng-model="mainImg" class="form-control-file" ngf-accept="'image/*'" ngf-select="UploadFiles($files)" />
+                                <div id="dvProgress" class="progress" ng-show="Progress >= 0"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-10 col-md-10 imgContainer">
+                        <img ng-src="~/Uploads/{{Result}}" class="imgheight" ng-hide="showImg" />
+                        <button class="btn btn-pink text-light np-btn" ng-show="imgshow" ng-click="ImageRemove(Result)"><i class="fas fa-times-circle"></i></button>
+                    </div>
+                </div>
+                <hr />
+                <div class="row" ng-hide="IsPhoto">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>News Content</label>
+                            <input type="text" id="txtNewsContent" class="form-control nw-text" ng-model="NewsContent" />
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row" ng-show="IsScheduleDisc">
+                    <div class="col-md-1">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label for="isschedule">Is Schedule</label>
+                                <input type="checkbox" id="isschedule" ng-model="IsSchedule" ng-change="OnSchudle()" class="form-check-input ml-1" ng-checked="false" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <select id="ddlDelay" ng-model="selectedDelay" ng-show="IsSchedule" ng-init="selectedDelay='0'" class="form-control nw-text form-control-sm ml-1">
+                                    <option ng-selected="true" value="0">{{DefaultDelay}}</option>
+                                    <option value="{{val.Id}}" ng-repeat="val in Delay">{{val.Time}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr ng-show="IsScheduleDisc" />
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                    {
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label for="isFacebook">Is Facebook</label>
+                                        <input type="checkbox" id="isFacebook" ng-model="isFacebook" class="form-check-input ml-1" ng-checked="false" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <button id="btnSubmit" class="btn btn-bg-11 text-light np-btn btn-pad mt-2" ng-click="Add()"><i class="fas fa-upload"></i> Publish</button>
+                                    <button id="btnDelete" class="btn btn-bg-19 text-light np-btn btn-pad mt-2" ng-show="IsEdit" ng-click="Delete()"><i class="fas fa-trash"></i> Delete/Reject Post</button>
+                                    @if (Context.User.Identity.IsAuthenticated)
+                                    {
+                                        if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                                        {
+                                            <button id="btnAprove" class="btn btn-bg-16 text-light np-btn btn-pad mt-2" ng-show="IsApproved" ng-click="Approve()"><i class="fas fa-check"></i> Aprove Post</button>
+                                        }
+                                    }
+                                    <a class="btn btn-bg-10 text-light np-btn btn-pad mt-2" href="@Url.Action("Dashbord","NewsOprations")"><i class="fas fa-arrow-alt-circle-left"></i> Back to List</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="modPreview" tabindex="-1" role="dialog" aria-labelledby="modPreviewTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modPreviewTitle">Post Preview</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h3 class="text-pink header-title">{{popUpNewsobj.OdiaTitle}}</h3>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-lg-12">
+                                                <div class="float-left">
+                                                    <span class="publish">By</span><span class="publish-on beu">Beuro</span><span></span><span class="publish">Last Updated</span><span class="publish-on">{{date | date:'MMM dd, yyyy'}}</span>
+                                                </div>
+                                                <div class="float-right">
+                                                    <span class="bg-pink newstag" ng-repeat="link in popUpNewsobj.Tags.split(',')">
+                                                        <a class="text-light" href="#">{{link}}</a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-lg-12">
+                                                <img class="imgheight" ng-src="~/Uploads/{{popUpNewsobj.ImageName}}" alt="Images">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-lg-12 social social-1">
+                                                <span>Share</span>
+                                                <ul>
+                                                    <li><i class="fab fa-facebook-square fackbook"></i></li>
+                                                    <li><i class="fab fa-twitter-square twitter"></i></li>
+                                                    <li><i class="fab fa-google-plus-square googleplus"></i></li>
+                                                    <li><i class="fab fa-whatsapp-square whatapp"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div ng-bind-html="popUpNewsobj.ODContent" class="col-lg-12"></div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="btnSave" class="btn btn-bg-20 text-light np-btn btn-pad" ng-click="SavePost()">Save...</button>
+                                        <button type="button" class="btn btn-bg-17 text-light np-btn btn-pad" data-dismiss="modal"><i class="fas fa-times-circle"></i> Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Scripts/ng-file-upload-shim.min.js"></script>
+    <script src="~/Scripts/ng-file-upload.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.1.2/tinymce.min.js"></script>
+    <script src="~/Scripts/TagInput/bootstrap-tagsinput.min.js"></script>
+    <script src="~/Scripts/angular-sanitize.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: '#txtNewsContent',
+            theme: 'silver',
+            plugins: 'table hr anchor toc image insertdatetime advlist lists wordcount  textpattern noneditable help charmap quickbars emoticons code',
+            toolbar: 'undo redo | link image |bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange removeformat,code',
+            height: 600,
+            extended_valid_elements: "script[src|async|defer|type|charset]",
+            mobile: {
+                theme: 'mobile',
+                plugins: ['autosave', 'lists', 'autolink'],
+                toolbar: ['undo', 'bold', 'italic', 'italic', 'underline', 'link', 'unlink', 'image', 'bullist', 'numlist', 'fontsizeselect', 'forecolor', 'styleselect', 'removeformat']
+            },
+            quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote',
+            quickbars_insert_toolbar: 'quicktable',
+            setup: function (ed) {
+                ed.on('keydown', function (e)
+                {
+                    if ((e.keyCode == 8 || e.keyCode == 46) && tinymce.activeEditor.selection) {
+                        var seletedNode = tinymce.activeEditor.selection.getEnd();
+                        if (seletedNode && seletedNode.nodeName == "IMG")
+                        {
+                            var data = {};
+                            data.ImgUrl = seletedNode.src;
+                            alertify.confirm('Are you sure to delete this image?').set('onok', function (closeEvent) {
+                                $.ajax({
+                                    url: "/NewsOprations/DeleteContent",
+                                    type: "POST",
+                                    data: data,
+                                    success: function (response) {
+
+                                    },
+                                    error: function (er) {
+                                        alert(er);
+                                    }
+                                });
+                            });
+                        }
+                    }
+                });
+        },
+        image_title: true,
+        file_picker_types: 'image',
+        images_upload_url: '/NewsOprations/UploadFile',
+        images_reuse_filename: true,
+        convert_urls: false,
+        images_dataimg_filter: function (img) {
+            return img.hasAttribute('internal-blob');
+        },
+        images_upload_handler: function (blobInfo, success, failure) {
+        var xhr, formData;
+
+        xhr = new XMLHttpRequest();
+        xhr.withCredentials = false;
+        xhr.open('POST', '/NewsOprations/UploadFile');
+
+        xhr.onload = function () {
+            var json;
+
+            if (xhr.status != 200) {
+                failure('HTTP Error: ' + xhr.status);
+                return;
+            }
+
+            json = JSON.parse(xhr.responseText);
+
+            if (!json || typeof json.location != 'string') {
+                failure('Invalid JSON: ' + xhr.responseText);
+                return;
+            }
+
+            success(json.location);
+        };
+            var NewsId = getParameterByName('NewsId');
+            formData = new FormData();
+            formData.append('Image', blobInfo.blob(), blobInfo.filename());
+            formData.append("NewsId", NewsId);
+
+         xhr.send(formData);
+        },
+        file_picker_callback: function (cb, value, meta) {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
+            var NewsId = getParameterByName('NewsId');
+            input.onchange = function () {
+                var data = new FormData();
+                var files = this.files[0];
+                data.append("Image", files);
+                if (NewsId == null)
+                    NewsId = 0;
+                data.append("NewsId", NewsId);
+
+                $.ajax({
+                    url: "/NewsOprations/UploadFile",
+                    type: "POST",
+                    processData: false,
+                    contentType: false,
+                    data: data,
+                    success: function (response) {
+                        cb(response, { title: "Khabar Odia" });
+                    },
+                    error: function (er) {
+                        alert(er);
+                    }
+                });
+            };
+
+            input.click();
+        }
+        });</script>
+    <script>
+        var newsportalApp = angular.module('newsportalApp', ['ngResource', 'ngFileUpload','ngSanitize']);
+
+        newsportalApp.factory('NewsPostFc', ['$resource', function ($resource) {
+            return $resource('', {}, {
+                query: {
+                    method: 'GET',
+                    url: '/NewsOprations/GetNewsById',
+                    params: { format: 'json' },
+                    isArray: false
+                },
+                save: {
+                    method: 'Post',
+                    url: '/NewsOprations/NewsPost',
+                    params: { format: 'json' },
+                    isArray: false
+                },
+                update:
+                {
+                    method: 'Post',
+                    url: '/NewsOprations/UpdatePost',
+                    params: { format: 'json' },
+                    isArray: false
+                },
+                delete:
+                {
+                    method: 'Post',
+                    url: '/NewsOprations/DeletePost',
+                    params: { format: 'json' },
+                    isArray: false
+                },
+                approve:
+                {
+                    method: 'Post',
+                    url: '/NewsOprations/ApprovePost',
+                    params: { format: 'json' },
+                    isArray: false
+                },
+                getCategories: {
+                    method: 'GET',
+                    url: '/NewsType/GetNewsTypes',
+                    params: { format: 'json' },
+                    isArray: true
+                },
+                deleteImage:
+                {
+                    method: 'Post',
+                    url: '/NewsOprations/ImageDelete',
+                    params: { format: 'json' },
+                    isArray: false
+                }
+
+            });
+        }]);
+
+        // CONTROLLERS
+        newsportalApp.controller('NewsArchiveCtrl', ['$scope', '$window', '$location','NewsPostFc', 'Upload', '$timeout',
+            function ($scope, $window, $location, NewsPostFc, Upload, $timeout) {
+                $('#txtNewTag').val();
+                $('#txtNewTag').tagsinput();
+                $('#btnUpload').click(function () {
+                    alertify.confirm('Are you sure to Upload this Image ?').set('onok', function (closeEvent) {
+                        $('#fileUploader').click();
+                    });
+                });
+                $scope.RoleItems = {};
+                $scope.HeaderImage = "";
+                $scope.popUpNewsobj = {};
+                $scope.IsEdit = false;
+                $scope.IsApproved = false;
+                $scope.IsPhoto = false;
+
+                $scope.IsScheduleDisc = true;
+
+                $scope.IsSchedule = false;
+
+                $scope.search = function () {
+                    var NewsId = getParameterByName('NewsId');
+                    if (NewsId != null) {
+                        $('#btnSave').html('Update...');
+                        $scope.IsEdit = true;
+                        NewsPostFc.query({ Id: NewsId }).$promise.then(function (response) {
+                            var data = response._newspost;
+                            $scope.EngTitle = data.EnglishTitle;
+                            $scope.OdiaTitle = data.OdiaTitle;
+                            $scope.OdiaShortDescri = data.ODShortDesc;
+                            $scope.SeoMeta = data.SeoMeta;
+                            $('#txtNewTag').tagsinput('add', data.Tags);
+                            $scope.HeaderImage = data.HeaderImageName;
+                            $scope.Result = data.HeaderImageName;
+                            $scope.selectedCatagory = data.CategoryId.toString();
+                            $scope.IsApprove = data.IsReviewed;
+                            $scope.imgshow = true;
+                            $scope.showImg = false;
+                            $scope.oncatchange($scope.selectedCatagory);
+                            if (data.IsReviewed != true) {
+                                $scope.IsApproved = true;
+                            }
+                            else {
+                                $scope.IsScheduleDisc = false;
+                            }
+
+                            if (data.CategoryId != 10) {
+                                try {
+                                    setTimeout(function () {
+                                         //tinymce.get('txtNewsContent').setContent(data.ODContent);
+                                        tinymce.activeEditor.setContent(data.ODContent);
+                                    }, 3000);
+
+                                } catch (ex) {
+                                    alert(ex);
+
+                                }
+
+                            }
+                            var npsc = response._npsc;
+                            if (npsc != null) {
+                                $scope.IsSchedule = true;
+                                $scope.OnSchudle();
+
+                                $scope.selectedDelay = npsc.TimeDelay.toString();
+                            }
+                        }, function (error) {
+
+                        });
+                    }
+
+                };
+                $scope.Delay = [];
+
+                $scope.OnSchudle = function () {
+                    if ($scope.IsSchedule == true) {
+                        $scope.DefaultDelay = "Please Select";
+                        $scope.Delay.length = 0;
+                        for (var i = 1; i < 25; i++) {
+                            var obj = {}
+                            obj.Id = i.toString();
+                            obj.Time = i + " Hour";
+                            $scope.Delay.push(obj);
+                        }
+                    }
+                    else {
+                        $scope.Delay.length = 0;
+                    }
+
+                }
+                $scope.oncatchange = function (catId) {
+                    if (catId == "10") {
+                        $scope.IsPhoto = true;
+                    }
+                    else {
+                        $scope.IsPhoto = false;
+                    }
+                }
+                $scope.Approve = function () {
+                    alertify.confirm('Have you checked the all the spelling ? if verify once it will take only 1 minute').set('onok', function (closeEvent) {
+                        loaderShow();
+                        var obj = {};
+                        var NewsId = getParameterByName('NewsId');
+                        obj.Id = NewsId;
+                        NewsPostFc.approve(JSON.stringify(obj)).$promise.then(function (data) {
+                            $('#btnAprove').prop('disabled', true);
+                            loaderHide();
+                            alertify.alert('Post', data.msg, function () {
+                                if (data.msg == "Post Approved Successfully") {
+                                     window.location.href='@Url.Action("Dashbord", "NewsOprations")';
+                                }
+
+                            });
+                        });
+                    });
+                }
+                $scope.getCategory = function () {
+                    NewsPostFc.getCategories().$promise.then(function (data) {
+                        $scope.DefaultLabel = "Please Select";
+                        $scope.CategoryData = data;
+                        loaderHide();
+
+                    }, function (error) {
+                    });
+                };
+                $scope.ImageRemove = function (ImagePath) {
+                    alertify.confirm('Are you sure to delete this Image ?').set('onok', function (closeEvent) {
+                        loaderShow();
+                        var obj = {};
+                        obj.imagePath = ImagePath;
+                        NewsPostFc.deleteImage(JSON.stringify(obj)).$promise.then(function (data) {
+                            $scope.imgshow = false;
+                            $scope.showImg = true;
+                            $scope.HeaderImage = "";
+                            loaderHide();
+                        }, function (error) {
+
+                        });
+                    });
+                }
+                $scope.SavePost = function () {
+                    alertify.confirm('Have you checked the all your spelling ? if verify once it will take only 1 minute').set('onok', function (closeEvent) {
+                    loaderShow();
+                    var obj = {};
+                    obj.PostContent = $scope.PostContent;
+                    obj.EnglishTitle=$scope.popUpNewsobj.EnglishTitle;
+                    obj.OdiaTitle=$scope.popUpNewsobj.OdiaTitle = $scope.OdiaTitle;
+                    obj.ODShortDesc=$scope.popUpNewsobj.ODShortDesc;
+                    obj.SeoMeta=$scope.popUpNewsobj.SeoMeta;
+                    obj.Tags = $scope.popUpNewsobj.Tags;
+                    obj.CategoryId=$scope.popUpNewsobj.CategoryId;
+                    obj.ODContent=$scope.popUpNewsobj.ODContent;
+                    obj.ImageName = $scope.popUpNewsobj.ImageName;
+                    obj.IsSchedule = $scope.IsSchedule;
+                    obj.Delay = $scope.selectedDelay;
+                    obj.IsFacebookPublish = $scope.isFacebook;
+
+                    if ($('#btnSave').html() != 'Update...') {
+                        NewsPostFc.save(JSON.stringify(obj)).$promise.then(function (data) {
+                            $('#btnAprove').prop('disabled', true);
+                            loaderHide();
+
+                            alertify.alert('Post', data.msg, function () {
+                                if (data.msg == "News Posted Successfully...") {
+                                    window.location.href='@Url.Action("Dashbord", "NewsOprations")';
+                                }
+
+                            });
+                        });
+                    }
+                    else {
+                        obj.Id = getParameterByName('NewsId');
+                        NewsPostFc.update(JSON.stringify(obj)).$promise.then(function (data) {
+                            $('#btnAprove').prop('disabled', true);
+                            loaderHide();
+                            alertify.alert('Post', data.msg, function () {
+                                if (data.msg == "Post Updated Successfully") {
+                                    window.location.href='@Url.Action("Dashbord", "NewsOprations")';
+                                }
+                            });
+                        });
+                        }
+                    });
+                }
+                $scope.Add = function () {
+                    var txtEditorData=tinyMCE.get('txtNewsContent').getContent();
+                    var obj = {};
+                    if ($scope.selectedCatagory == "0") {
+                        buttonUnfocus();
+                        alertify.alert('News Category', 'Please Select a News Category!', function () { document.querySelector("#ddlCatagory").focus(); });
+                        return false;
+                    }
+                    if ($('#txtNewTag').val() == "") {
+                        if ($scope.IsPhoto == false) {
+                            buttonUnfocus();
+                            alertify.alert('News Tags', 'Please Enter News Tags with Coma(,) separate!', function () { document.querySelector("#txtNewTag").focus(); });
+                            return false;
+                        }
+                    }
+                    if ($scope.EngTitle == "" || typeof ($scope.EngTitle) == "undefined") {
+                        buttonUnfocus();
+                        alertify.alert('English Title', 'Please Enter English Title!', function () { document.querySelector("#txtEngTitle").focus(); });
+                        return false;
+                    }
+                    if ($scope.OdiaTitle == "" || typeof ($scope.OdiaTitle) == "undefined") {
+
+                            buttonUnfocus();
+                            alertify.alert('Odia Title', 'Please Enter Odia Title!', function () { document.querySelector("#txtOdiaTitle").focus(); });
+                            return false;
+                    }
+                    if ($scope.OdiaShortDescri == "" || typeof ($scope.OdiaShortDescri) == "undefined") {
+                      if ($scope.IsPhoto == false) {
+                        buttonUnfocus();
+                          alertify.alert('Odia Short Description', 'Please Enter Odia Short Description !', function () { document.querySelector("#txtOdiaShortDesc").focus(); });
+                          return false;
+                       }
+                    }
+                    if ($scope.SeoMeta == ""||typeof($scope.SeoMeta) == "undefined") {
+                        buttonUnfocus();
+                        alertify.alert('SEO Meta Data', 'Please Enter SEO Meta Data !', function () { document.querySelector("#txtSeoMeta").focus(); });
+                        return false;
+                    }
+                    if ($scope.HeaderImage == "") {
+                        buttonUnfocus();
+                        alertify.alert('Header Image', 'Please Select a Header Image !', function () { document.querySelector("#fileUploader").focus(); });
+                        return false;
+                    }
+                    if (txtEditorData == "") {
+                        if ($scope.IsPhoto == false) {
+                            buttonUnfocus();
+                            alertify.alert('News Post', 'Please Enter News !', function () { document.querySelector("#txtNewsContent").focus(); });
+                            return false;
+                        }
+                    }
+                    if ($scope.IsSchedule == true && $scope.selectedDelay=="0") {
+                        buttonUnfocus();
+                        alertify.alert('News Post', 'Please Select Delay !', function () { document.querySelector("#ddlDelay").focus(); });
+                        return false;
+                    }
+                    $scope.PostContent = txtEditorData;
+                    $scope.popUpNewsobj.EnglishTitle = $scope.EngTitle;
+                    $scope.popUpNewsobj.OdiaTitle = $scope.OdiaTitle;
+                    $scope.popUpNewsobj.ODShortDesc = $scope.OdiaShortDescri;
+                    $scope.popUpNewsobj.SeoMeta = $scope.SeoMeta;
+                    $scope.popUpNewsobj.Tags = $('#txtNewTag').val();
+                    $scope.popUpNewsobj.CategoryId = $scope.selectedCatagory;
+                    $scope.popUpNewsobj.ODContent = txtEditorData;
+                    $scope.popUpNewsobj.ImageName = $scope.HeaderImage;
+                    $scope.date = new Date();
+                    $scope.Tags = $('#txtNewTag').val().split(',');
+
+                    alertify.confirm('Have you checked the all your spelling ? if verify once it will take only 1 minute').set('onok', function (closeEvent) { $('#modPreview').modal('show'); });
+
+                };
+                $scope.search();
+                $scope.getCategory();
+                $scope.Delete = function () {
+                    alertify.confirm('Are you sure to delete ?').set('onok', function (closeEvent) {
+                        loaderShow();
+                        var obj = {};
+                        var NewsId = getParameterByName('NewsId');
+                        obj.Id = NewsId;
+                        NewsPostFc.delete(JSON.stringify(obj)).$promise.then(function (data) {
+                            $('#btnAprove').prop('disabled', true);
+                            loaderHide();
+                            alertify.alert('Post', data.msg, function () {
+
+                                if (data.msg == "Post Deleted Successfully") {
+                                     window.location.href='@Url.Action("Dashbord", "NewsOprations")';
+                                }
+                            });
+                        });
+
+                    });
+                };
+                $scope.UploadFiles = function (files) {
+                    $scope.SelectedFiles = files;
+                    var NewsId = getParameterByName('NewsId');
+                    if (NewsId == null) {
+                        NewsId = 0;
+                    }
+                    if ($scope.SelectedFiles && $scope.SelectedFiles.length) {
+                        Upload.upload({
+                            url: '/NewsOprations/HeaderImageUpload/',
+                            data: {
+                                files: $scope.SelectedFiles,
+                                newsID: NewsId
+                            }
+                        }).then(function (response) {
+                            $timeout(function () {
+                                $scope.Result = response.data;
+                                $scope.HeaderImage = response.data;
+                                $scope.imgshow = true;
+                                $scope.showImg = false;
+                            });
+                        }, function (response) {
+                            if (response.status > 0) {
+                                var errorMsg = response.status + ': ' + response.data;
+                                alert(errorMsg);
+                            }
+                            }, function (evt) {
+                                $('#dvProgress').show();
+                            var element = angular.element(document.querySelector('#dvProgress'));
+                            $scope.Progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                            element.html('<div style="width: ' + $scope.Progress + '%">' + $scope.Progress + '%</div>');
+                        });
+                        }
+                };
+                $scope.roleFilter = function (RoleId) {
+                    if ($scope.RoleItems.Items != undefined) {
+                        var flterdata = $scope.RoleItems.Items.filter(function (item) {
+                            return item.RoleId == RoleId;
+                        });
+                        if (flterdata[0] != undefined) {
+                            return flterdata[0].RoleName;
+                        }
+                        else {
+                            return '';
+                        }
+                    }
+
+                };
+
+            }]);
+        // DIRECTIVES
+        newsportalApp.directive('newsportalPager', function () {
+            return {
+                scope: {
+                    page: '@@',
+                    pagesCount: '@@',
+                    totalCount: '@@',
+                    searchFunc: '&'
+                },
+                replace: true,
+                restrict: 'E',
+                templateUrl: '../Scripts/templates/pager-template.html',
+                controller: ['$scope', function ($scope) {
+                    $scope.search = function (i) {
+                        if ($scope.searchFunc) {
+                            $scope.searchFunc({ page: i });
+                        }
+                    };
+                    $scope.range = function () {
+                        if (!$scope.pagesCount) { return []; }
+                        var step = 2;
+                        var doubleStep = step * 2;
+                        var start = Math.max(0, $scope.page - step);
+                        var end = start + 1 + doubleStep;
+                        if (end > $scope.pagesCount) { end = $scope.pagesCount; }
+
+                        var ret = [];
+                        for (var i = start; i != end; ++i) {
+                            ret.push(i);
+                        }
+
+                        return ret;
+                    };
+                }]
+            }
+        });
+        function buttonUnfocus() {
+            $('#btnSubmit').blur();
+        }
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+    </script>
+}
+
+

@@ -1,0 +1,7 @@
+﻿<div ng-repeat="item in data" class="row mb-4 otherns">
+    <div class="col-lg-12 col-sm-12 col-12">
+        <div class="featured"><a href="{{mainurl}}/News/{{item.NewsType}}/{{item.PostedYear}}/{{item.PostedMonth}}/{{item.Id}}/{{item.SlugUrl}}"><img bn-lazy-src="{{mainurl}}/Uploads/{{item.Thumbnail86}}" /></a></div>
+        <p class="title"><a class="text-dark" href="{{mainurl}}/News/{{item.NewsType}}/{{item.PostedYear}}/{{item.PostedMonth}}/{{item.Id}}/{{item.SlugUrl}}">{{(item.OdiaTitle | limitTo: 50)}}<span class="dot">{{(item.OdiaTitle.length > 50 ? '...' : '')}}</span></a></p>
+        <div><span class="timespn">{{item.PostedOn | date:'MMM dd, yyyy'}}</span></div>
+    </div>
+</div>

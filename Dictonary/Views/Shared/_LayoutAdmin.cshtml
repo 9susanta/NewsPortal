@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Khabar Odia</title>
+    @Styles.Render("~/Content/admincss", "~/Content/IconCss")
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-menu">
+        <div class="navbar-brand text-light"><b>KhabarOdia</b></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nvbrNvDropdown" aria-controls="nvbrNvDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+            </span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="nvbrNvDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-white" href="@Url.Action("Dashbord","NewsOprations")"><i class="fas fa-home menu-mr"></i> Home</a>
+                </li>
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("Index","NewsOprations")">
+                            <i class="fas fa-newspaper menu-mr"></i> News Post
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("Dashbord","NewsOprations")"><i class="fas fa-laptop menu-mr"></i> News Dashbord</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("Analytics","NewsOprations")"><i class="fas fa-chart-line menu-mr"></i> Analytics Dashbord</a>
+                    </li>
+                    if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                    {
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="@Url.Action("Index","NewsType")"><i class="fas fa-list-alt menu-mr"></i> News Type</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="@Url.Action("Index","Users")"><i class="fas fa-user menu-mr"></i> User Managment</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="@Url.Action("Index","Roles")"><i class="fas fa-users menu-mr"></i> Roles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="@Url.Action("Index","Info")"><i class="fas fa-info menu-mr"></i> Contact Info</a>
+                        </li>
+
+                    }
+                }
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link text-white dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user-alt"></i><span>&nbsp;</span>@HttpContext.Current.User.Identity.Name<b class="caret"></b></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/Users/UserProfile"><i class="fas fa-user-alt"></i> Profile</a>
+                            <a class="dropdown-divider"></a>
+                            <a class="dropdown-item" href="/Users/ChangePassword"><i class="fas fa-key"></i> Change Password</a>
+                            <a class="dropdown-divider"></a>
+                            <a class="dropdown-item" href="/Users/Logout"><i class="fas fa-lock"></i> Sign out</a>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>&nbsp; <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Users/Login">Sign In</a></li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Khabar Odia</p>
+        </footer>
+    </div>
+    <a id="btntop" class="top"><i class="fas fa-angle-up"></i></a>
+    <div id="laoder" class="loading">
+        <i class="fas fa-spinner fa-spin fa-3x"></i>
+    </div>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <link href="~/Scripts/alertifyjs/css/alertify.min.css" rel="stylesheet" />
+    <link href="~/Scripts/alertifyjs/css/themes/default.min.css" rel="stylesheet" />
+    <script src="~/Scripts/umd/popper.min.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/resources")
+    <script src="~/Scripts/alertifyjs/alertify.min.js"></script>
+    @RenderSection("scripts", required: false)
+    <script>
+        function loaderShow() {
+            $("#laoder").removeClass('tp-hide');
+        }
+        function loaderHide() {
+            $("#laoder").addClass('tp-hide');
+        }
+        (function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $('#btntop').removeClass('tp-hide');
+                    $('#btntop').addClass('tp-show');
+                }
+                else {
+                    $('#btntop').removeClass('tp-show');
+                    $('#btntop').fadeOut('tp-hide');
+                }
+            });
+            $('#btntop').click(function (e) {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+            });
+            $(document).click(function (e) {
+                var clickover = $(e.target);
+                var navbar = $('#nvbrNvDropdown');
+                var _opened = navbar.hasClass('show');
+                if (_opened == true && !clickover.hasClass('navbar-toggler')) {
+                    navbar.collapse('hide');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

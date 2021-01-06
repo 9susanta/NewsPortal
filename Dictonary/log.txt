@@ -1,0 +1,590 @@
+INFO  2019-12-09 21:40:52,051  2787ms StdSchedulerFactory    Log                - Using object serializer: Quartz.Simpl.BinaryObjectSerializer, Quartz
+DEBUG 2019-12-09 21:40:52,699  3436ms skSchedulingThreadPool Log                - TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+INFO  2019-12-09 21:40:52,999  3736ms SchedulerSignalerImpl  Log                - Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+INFO  2019-12-09 21:40:53,022  3759ms QuartzScheduler        Log                - Quartz Scheduler v.3.0.7.0 created.
+INFO  2019-12-09 21:40:53,022  3759ms RAMJobStore            Log                - RAMJobStore initialized.
+INFO  2019-12-09 21:40:53,026  3763ms QuartzScheduler        Log                - Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+INFO  2019-12-09 21:40:53,029  3766ms StdSchedulerFactory    Log                - Quartz scheduler 'QuartzScheduler' initialized
+INFO  2019-12-09 21:40:53,029  3766ms StdSchedulerFactory    Log                - Quartz scheduler version: 3.0.7.0
+INFO  2019-12-09 21:40:53,071  3808ms QuartzScheduler        Log                - Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+DEBUG 2019-12-09 21:40:53,306  4042ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-09 21:40:53,354  4090ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-09 21:40:53,364  4100ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:40:53,498  4235ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-09 21:40:54,460  5196ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-09 21:41:12,092 22828ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-09 21:41:16,541 27278ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:41:46,374 57111ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:42:16,134 86870ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:42:40,293 111029ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:43:08,466 139203ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:43:35,103 165840ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:43:58,377 189114ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:44:26,286 217022ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:44:52,571 243308ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:45:20,882 271618ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:45:50,806 301542ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:46:20,511 331247ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:46:47,634 358370ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:47:16,617 387353ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:47:43,755 414491ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:48:07,671 438407ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:48:36,172 466908ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+INFO  2019-12-09 21:48:56,026 486763ms apiPlugin              pagePublish        - {}
+DEBUG 2019-12-09 21:49:01,361 492098ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-09 21:49:25,369 516105ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+INFO  2019-12-10 23:18:54,255  1331ms StdSchedulerFactory    Log                - Using object serializer: Quartz.Simpl.BinaryObjectSerializer, Quartz
+DEBUG 2019-12-10 23:18:54,605  1682ms skSchedulingThreadPool Log                - TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+INFO  2019-12-10 23:18:54,656  1733ms SchedulerSignalerImpl  Log                - Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+INFO  2019-12-10 23:18:54,662  1739ms QuartzScheduler        Log                - Quartz Scheduler v.3.0.7.0 created.
+INFO  2019-12-10 23:18:54,663  1740ms RAMJobStore            Log                - RAMJobStore initialized.
+INFO  2019-12-10 23:18:54,667  1744ms QuartzScheduler        Log                - Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+INFO  2019-12-10 23:18:54,668  1745ms StdSchedulerFactory    Log                - Quartz scheduler 'QuartzScheduler' initialized
+INFO  2019-12-10 23:18:54,668  1745ms StdSchedulerFactory    Log                - Quartz scheduler version: 3.0.7.0
+INFO  2019-12-10 23:18:54,679  1756ms QuartzScheduler        Log                - Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+DEBUG 2019-12-10 23:18:54,850  1927ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-10 23:18:54,932  2009ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-10 23:18:54,944  2021ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:18:54,995  2072ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-10 23:18:55,310  2387ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-10 23:19:04,089 11165ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-10 23:19:23,205 30282ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:19:52,242 59319ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:20:21,222 88299ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:20:44,975 112052ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:21:11,523 138600ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:21:37,283 164360ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:22:03,593 190670ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:22:27,458 214534ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:22:55,855 242931ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:23:22,269 269345ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:23:52,211 299287ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:24:19,648 326725ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:24:47,125 354202ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:25:11,949 379025ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:25:36,670 403747ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:26:01,412 428488ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:26:29,016 456093ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:26:57,073 484150ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:27:23,927 511004ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:27:52,812 539889ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:28:22,600 569677ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:28:45,681 592757ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-10 23:28:54,686 601762ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-10 23:28:54,687 601763ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:28:54,687 601763ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-10 23:28:54,688 601764ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-10 23:28:54,692 601768ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-10 23:29:18,958 626035ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:29:47,605 654682ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:30:16,290 683367ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:30:46,172 713249ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:31:10,635 737712ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:31:37,450 764527ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:32:05,462 792538ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:32:30,369 817446ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:32:57,370 844446ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:33:25,242 872319ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:33:50,456 897533ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:34:17,703 924780ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:34:46,610 953687ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:35:13,595 980672ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:35:38,336 1005413ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:36:06,388 1033465ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:36:30,020 1057097ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:36:56,119 1083195ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:37:19,440 1106517ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:37:42,681 1129758ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:38:11,069 1158146ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:38:38,588 1185665ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-10 23:38:54,687 1201764ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-10 23:38:54,688 1201765ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-10 23:38:54,688 1201765ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-10 23:38:54,688 1201765ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:38:54,693 1201770ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-10 23:39:20,166 1227243ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:39:48,006 1255083ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:40:14,522 1281599ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:40:43,393 1310469ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:41:09,377 1336453ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:41:33,674 1360751ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:42:03,668 1390745ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:42:30,823 1417900ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:43:00,585 1447662ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:43:25,333 1472409ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:43:52,392 1499469ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:44:16,548 1523625ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:44:40,273 1547350ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:45:07,817 1574894ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:45:33,299 1600376ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:45:59,632 1626709ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:46:28,664 1655741ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:46:55,612 1682689ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:47:21,459 1708536ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:47:46,089 1733165ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:48:12,417 1759494ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:48:37,391 1784468ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-10 23:48:54,687 1801763ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-10 23:48:54,688 1801764ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-10 23:48:54,689 1801765ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-10 23:48:54,688 1801764ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:48:54,693 1801769ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-10 23:49:24,460 1831536ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:49:49,710 1856787ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:50:15,913 1882990ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:50:44,011 1911088ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:51:09,319 1936396ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:51:34,398 1961475ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:51:57,538 1984614ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:52:24,594 2011671ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:52:50,612 2037688ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:53:13,848 2060924ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:53:39,440 2086516ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:54:08,166 2115243ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:54:34,243 2141320ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:54:59,977 2167053ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:55:25,228 2192305ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:55:52,197 2219273ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:56:16,154 2243230ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+INFO  2019-12-10 23:56:32,477 2259554ms apiPlugin              pagePublish        - {}
+DEBUG 2019-12-10 23:56:46,000 2273076ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:57:09,122 2296198ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:57:37,093 2324170ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:58:03,253 2350330ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:58:27,908 2374985ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-10 23:58:54,685 2401762ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-10 23:58:54,686 2401763ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-10 23:58:54,687 2401764ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-10 23:58:54,686 2401763ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:58:54,690 2401767ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-10 23:59:20,032 2427109ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-10 23:59:43,690 2450767ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:00:11,920 2478997ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:00:35,328 2502404ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:01:03,426 2530503ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:01:33,139 2560216ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:01:59,479 2586556ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:02:23,777 2610854ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:02:53,375 2640452ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:03:23,085 2670161ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:03:50,564 2697641ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:04:20,032 2727109ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:04:49,350 2756427ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:05:15,721 2782798ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:05:45,018 2812095ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:06:09,249 2836326ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:06:37,456 2864533ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:07:05,677 2892754ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+INFO  2019-12-11 00:07:40,879  2863ms StdSchedulerFactory    Log                - Using object serializer: Quartz.Simpl.BinaryObjectSerializer, Quartz
+DEBUG 2019-12-11 00:07:41,495  3479ms skSchedulingThreadPool Log                - TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+INFO  2019-12-11 00:07:41,581  3565ms SchedulerSignalerImpl  Log                - Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+INFO  2019-12-11 00:07:41,629  3613ms QuartzScheduler        Log                - Quartz Scheduler v.3.0.7.0 created.
+INFO  2019-12-11 00:07:41,632  3616ms RAMJobStore            Log                - RAMJobStore initialized.
+INFO  2019-12-11 00:07:41,641  3625ms QuartzScheduler        Log                - Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+INFO  2019-12-11 00:07:41,643  3627ms StdSchedulerFactory    Log                - Quartz scheduler 'QuartzScheduler' initialized
+INFO  2019-12-11 00:07:41,644  3628ms StdSchedulerFactory    Log                - Quartz scheduler version: 3.0.7.0
+INFO  2019-12-11 00:07:41,724  3708ms QuartzScheduler        Log                - Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+DEBUG 2019-12-11 00:07:41,834  3818ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-11 00:07:41,882  3866ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-11 00:07:41,889  3873ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:07:41,935  3919ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-11 00:07:43,185  5168ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-11 00:07:54,662 16646ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-11 00:08:09,868 31852ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:08:39,568 61551ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:09:07,250 89234ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:09:32,139 114123ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:09:58,344 140328ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:10:26,172 168155ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:10:54,068 196051ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:11:18,036 220019ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:11:41,570 243554ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:12:09,629 271613ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:12:35,177 297161ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:13:05,167 327151ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:13:34,155 356139ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:14:02,859 384843ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:14:26,991 408975ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:14:53,395 435379ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:15:18,737 460721ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:15:48,625 490608ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:16:13,455 515439ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:16:39,766 541749ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:17:07,517 569501ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:17:34,688 596672ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-11 00:17:41,945 603928ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-11 00:17:41,946 603929ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:17:41,955 603939ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-11 00:17:41,955 603939ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-11 00:17:41,994 603978ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-11 00:18:09,080 631064ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:18:34,109 656093ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:19:01,403 683386ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:19:24,474 706457ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:19:53,588 735572ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:20:19,192 761176ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:20:45,102 787086ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:21:13,519 815503ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:21:42,069 844053ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:22:10,092 872076ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:22:34,949 896933ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:22:58,505 920489ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:23:22,522 944506ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:23:47,986 969970ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:24:17,115 999099ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:24:45,214 1027198ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:25:08,546 1050530ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:25:38,221 1080205ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:26:03,782 1105765ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:26:30,318 1132302ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:26:53,394 1155377ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:27:16,931 1178914ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-11 00:27:41,733 1203717ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-11 00:27:41,734 1203718ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-11 00:27:41,734 1203718ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-11 00:27:41,734 1203718ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:27:44,232 1206215ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-11 00:28:08,730 1230714ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:28:35,312 1257296ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:29:03,411 1285395ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:29:27,404 1309388ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:29:55,693 1337677ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:30:19,631 1361615ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:30:45,923 1387907ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:31:11,946 1413930ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:31:39,836 1441820ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:32:03,509 1465492ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:32:30,174 1492158ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:32:58,537 1520521ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:33:23,902 1545886ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:33:53,856 1575840ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:34:19,867 1601851ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:34:46,908 1628892ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:35:13,468 1655452ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:35:37,015 1678999ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:36:01,940 1703924ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:36:26,719 1728703ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:36:53,444 1755428ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:37:21,627 1783611ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-11 00:37:41,734 1803718ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-11 00:37:41,735 1803719ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-11 00:37:41,735 1803719ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-11 00:37:41,735 1803719ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:37:41,828 1803812ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-11 00:38:06,261 1828244ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:38:32,965 1854948ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:39:02,411 1884395ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:39:30,390 1912373ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:39:53,748 1935732ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:40:17,988 1959971ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:40:45,630 1987613ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:41:14,810 2016794ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:41:41,613 2043597ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:42:09,112 2071096ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:42:33,049 2095033ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:42:57,206 2119190ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:43:22,146 2144130ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:43:45,818 2167802ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:44:10,998 2192982ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:44:36,853 2218836ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:45:05,985 2247969ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:45:35,743 2277726ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:46:00,213 2302196ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:46:25,728 2327712ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:46:50,782 2352766ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:47:18,996 2380980ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-11 00:47:41,732 2403716ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-11 00:47:41,733 2403717ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:47:41,733 2403717ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-11 00:47:41,866 2403849ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-11 00:47:41,880 2403864ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-11 00:48:11,682 2433666ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:48:40,957 2462940ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:49:08,302 2490285ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:49:32,555 2514539ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:50:02,172 2544156ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 00:50:27,691 2569675ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+INFO  2019-12-11 23:09:34,605  1422ms StdSchedulerFactory    Log                - Using object serializer: Quartz.Simpl.BinaryObjectSerializer, Quartz
+DEBUG 2019-12-11 23:09:35,449  2266ms skSchedulingThreadPool Log                - TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+INFO  2019-12-11 23:09:35,474  2291ms SchedulerSignalerImpl  Log                - Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+INFO  2019-12-11 23:09:35,496  2313ms QuartzScheduler        Log                - Quartz Scheduler v.3.0.7.0 created.
+INFO  2019-12-11 23:09:35,498  2315ms RAMJobStore            Log                - RAMJobStore initialized.
+INFO  2019-12-11 23:09:35,506  2323ms QuartzScheduler        Log                - Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+INFO  2019-12-11 23:09:35,507  2324ms StdSchedulerFactory    Log                - Quartz scheduler 'QuartzScheduler' initialized
+INFO  2019-12-11 23:09:35,507  2324ms StdSchedulerFactory    Log                - Quartz scheduler version: 3.0.7.0
+INFO  2019-12-11 23:09:35,519  2336ms QuartzScheduler        Log                - Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+DEBUG 2019-12-11 23:09:35,728  2545ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-11 23:09:35,796  2613ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-11 23:09:35,805  2622ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:09:35,876  2693ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-11 23:09:39,378  6195ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-11 23:09:59,378 26194ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-11 23:10:05,231 32048ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:10:32,653 59470ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:11:00,151 86967ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:11:27,870 114686ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:11:55,438 142254ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:12:24,150 170967ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:12:48,615 195432ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:13:13,235 220052ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:13:39,996 246813ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:14:05,422 272239ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:14:31,407 298224ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:15:00,202 327019ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:15:26,912 353729ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:15:54,878 381695ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:16:22,858 409675ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:16:48,603 435420ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:17:14,145 460962ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:17:38,471 485287ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:18:02,036 508853ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:18:26,167 532984ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:18:52,035 558852ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:19:15,909 582726ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-11 23:19:35,526 602343ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-11 23:19:35,527 602344ms JobRunShell            Log                - Calling Execute on job group1.myJob
+DEBUG 2019-12-11 23:19:35,527 602344ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+INFO  2019-12-11 23:19:35,528 602345ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-11 23:19:35,621 602438ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-11 23:19:59,792 626609ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:20:23,926 650743ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:20:47,891 674707ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:21:17,084 703900ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:21:42,619 729435ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:22:11,941 758757ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:22:39,134 785950ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:23:03,185 810002ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:23:33,018 839835ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:23:58,219 865036ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:24:26,664 893481ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:24:56,041 922858ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:25:24,274 951091ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:25:54,116 980933ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:26:23,946 1010762ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:26:48,768 1035584ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:27:14,921 1061738ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:27:44,805 1091621ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:28:08,501 1115318ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:28:38,420 1145237ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:29:03,932 1170749ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:29:28,207 1195023ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-11 23:29:35,527 1202343ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-11 23:29:35,528 1202344ms JobRunShell            Log                - Calling Execute on job group1.myJob
+DEBUG 2019-12-11 23:29:35,528 1202344ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+INFO  2019-12-11 23:29:35,529 1202345ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-11 23:29:35,533 1202349ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-11 23:30:03,246 1230063ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:30:26,932 1253748ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:30:54,831 1281648ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:31:19,324 1306141ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:31:49,035 1335852ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:32:18,948 1365764ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:32:47,815 1394631ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:33:17,457 1424274ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:33:47,392 1454209ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:34:14,218 1481035ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:34:44,187 1511004ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:35:12,009 1538826ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:35:35,404 1562221ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:36:00,236 1587053ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:36:27,744 1614560ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:36:52,463 1639280ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:37:15,550 1662367ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:37:43,898 1690715ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:38:10,077 1716894ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:38:38,097 1744914ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:39:04,649 1771466ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:39:31,207 1798023ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-11 23:39:35,526 1802343ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-11 23:39:35,527 1802344ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-11 23:39:35,528 1802345ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-11 23:39:35,528 1802345ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:39:35,532 1802349ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-11 23:40:04,376 1831192ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:40:30,956 1857773ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:40:56,603 1883420ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:41:25,449 1912266ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:41:54,173 1940989ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:42:19,948 1966765ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:42:48,445 1995262ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+INFO  2019-12-11 23:43:01,062 2007879ms apiPlugin              pagePublish        - {}
+DEBUG 2019-12-11 23:43:12,671 2019488ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:43:38,189 2045006ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:44:06,222 2073039ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:44:32,834 2099650ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:45:01,734 2128551ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:45:25,200 2152016ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:45:49,112 2175928ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:46:19,049 2205866ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:46:45,816 2232633ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:47:12,279 2259096ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:47:38,875 2285692ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:48:04,679 2311496ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:48:33,613 2340429ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:49:03,176 2369993ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:49:30,921 2397738ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-11 23:49:35,526 2402343ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-11 23:49:35,528 2402345ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-11 23:49:35,528 2402345ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-11 23:49:35,528 2402345ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:49:35,542 2402358ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-11 23:50:02,162 2428979ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:50:26,851 2453668ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+INFO  2019-12-11 23:50:28,218 2455035ms apiPlugin              pagePublish        - {}
+DEBUG 2019-12-11 23:50:56,249 2483066ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:51:22,816 2509633ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:51:50,329 2537146ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:52:19,203 2566019ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:52:47,892 2594708ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:53:14,743 2621559ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:53:44,078 2650894ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:54:07,599 2674415ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:54:30,688 2697505ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:54:56,679 2723496ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:55:19,905 2746722ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+INFO  2019-12-11 23:57:57,538   370ms StdSchedulerFactory    Log                - Using object serializer: Quartz.Simpl.BinaryObjectSerializer, Quartz
+DEBUG 2019-12-11 23:57:58,009   840ms skSchedulingThreadPool Log                - TaskSchedulingThreadPool configured with max concurrency of 10 and TaskScheduler ThreadPoolTaskScheduler.
+INFO  2019-12-11 23:57:58,127   958ms SchedulerSignalerImpl  Log                - Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+INFO  2019-12-11 23:57:58,137   968ms QuartzScheduler        Log                - Quartz Scheduler v.3.0.7.0 created.
+INFO  2019-12-11 23:57:58,139   970ms RAMJobStore            Log                - RAMJobStore initialized.
+INFO  2019-12-11 23:57:58,147   978ms QuartzScheduler        Log                - Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'QuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 10 threads.
+  Using job-store 'Quartz.Simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+INFO  2019-12-11 23:57:58,148   979ms StdSchedulerFactory    Log                - Quartz scheduler 'QuartzScheduler' initialized
+INFO  2019-12-11 23:57:58,148   979ms StdSchedulerFactory    Log                - Quartz scheduler version: 3.0.7.0
+INFO  2019-12-11 23:57:58,157   988ms QuartzScheduler        Log                - Scheduler QuartzScheduler_$_NON_CLUSTERED started.
+DEBUG 2019-12-11 23:57:58,224  1055ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-11 23:57:58,240  1071ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-11 23:57:58,248  1079ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:57:58,293  1124ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-11 23:57:58,341  1172ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-11 23:58:04,912  7743ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-11 23:58:22,189 25020ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:58:47,615 50446ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:59:16,374 79205ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-11 23:59:44,648 107479ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+INFO  2019-12-11 23:59:46,237 109069ms apiPlugin              pagePublish        - {OAuth "Facebook Platform" "invalid_token" "Invalid OAuth access token."}
+DEBUG 2019-12-12 00:00:10,521 133352ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:00:36,314 159145ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:00:59,995 182826ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:01:29,069 211900ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:01:54,778 237609ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:02:24,387 267218ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:02:50,482 293313ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:03:18,595 321426ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:03:46,856 349687ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:04:15,005 377836ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:04:39,260 402091ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:05:08,728 431559ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:05:33,309 456140ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:06:00,167 482998ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:06:26,627 509459ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:06:52,603 535435ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:07:21,477 564308ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:07:46,873 589705ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-12 00:07:58,162 600993ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-12 00:07:58,163 600994ms JobRunShell            Log                - Calling Execute on job group1.myJob
+DEBUG 2019-12-12 00:07:58,163 600994ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+INFO  2019-12-12 00:07:58,164 600995ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-12 00:07:58,175 601006ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-12 00:08:27,368 630199ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:08:55,218 658049ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:09:19,139 681970ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:09:43,618 706449ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:10:07,013 729845ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:10:36,209 759040ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:11:03,927 786759ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:11:30,438 813269ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:11:58,759 841590ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:12:24,643 867474ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:12:51,331 894162ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:13:14,638 917469ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:13:40,671 943502ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:14:08,953 971785ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:14:33,036 995867ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:14:57,404 1020236ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:15:25,758 1048590ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:15:50,469 1073300ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:16:20,015 1102846ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:16:48,435 1131266ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:17:14,541 1157373ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:17:38,693 1181524ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-12 00:17:58,164 1200996ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-12 00:17:58,165 1200997ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-12 00:17:58,166 1200998ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-12 00:17:58,166 1200998ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:17:58,179 1201010ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-12 00:18:24,359 1227191ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:18:53,100 1255931ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:19:16,223 1279055ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:19:41,171 1304002ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:20:10,852 1333683ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:20:37,515 1360346ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:21:02,814 1385645ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:21:31,945 1414776ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:21:58,042 1440874ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:22:22,956 1465787ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:22:49,786 1492617ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:23:15,363 1518195ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:23:41,825 1544657ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:24:10,701 1573532ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:24:33,870 1596701ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:25:01,593 1624424ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:25:26,868 1649699ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:25:52,417 1675248ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:26:20,186 1703017ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:26:48,631 1731463ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:27:16,297 1759128ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:27:40,675 1783507ms QuartzSchedulerThread  Log                - Batch acquisition of 1 triggers
+DEBUG 2019-12-12 00:27:58,167 1800998ms SimpleJobFactory       Log                - Producing instance of Job 'group1.myJob', class=NewsPortal.Concrete.JobClass
+DEBUG 2019-12-12 00:27:58,169 1801000ms JobRunShell            Log                - Calling Execute on job group1.myJob
+INFO  2019-12-12 00:27:58,253 1801084ms JobClass               MoveNext           - Job was getting called
+DEBUG 2019-12-12 00:27:58,169 1801000ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:27:58,336 1801167ms JobRunShell            Log                - Trigger instruction : NoInstruction
+DEBUG 2019-12-12 00:28:25,307 1828138ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:28:51,296 1854128ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:29:15,617 1878448ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:29:41,364 1904195ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:30:04,817 1927648ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:30:33,068 1955900ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:31:00,017 1982848ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:31:26,308 2009139ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:31:54,522 2037353ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:32:20,222 2063054ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:32:48,804 2091635ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:33:17,335 2120167ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:33:45,485 2148317ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers
+DEBUG 2019-12-12 00:34:14,442 2177273ms QuartzSchedulerThread  Log                - Batch acquisition of 0 triggers

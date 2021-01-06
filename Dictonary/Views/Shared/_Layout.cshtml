@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html ng-app="newsportalApp" ng-controller="NewsCtrl">
+<head id="head">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="Khabar Odia is one of the leading web platform which brings up latest,crime,politics,entertainment,sports and many more news from round the globle to its readers in Odia. Odia is one of the oldest indian language which use brodly use by Indian state odisha. Also Khabar Odia is commited to reach more and more odia people with its unbaised news in their langauge only .">
+    <meta property="og:url" content="@ViewBag.Url" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="@ViewBag.Title" />
+    <meta property="og:description" content="@ViewBag.Desc" />
+    <meta property="og:image" content="@ViewBag.ImgUrl" />
+    <meta name="robots" content="index, follow">
+    <meta property="fb:app_id" content="308546039612380" />
+    <meta name="keywords" content="Get Latest News, Odia News, Odia Khabar, Odisha News, Sambad ,Crime News In Odisha, Political News in Odisha, Odisha Politics, Ollywoold News, Sports" />
+    <link href="@ViewBag.Url" rel="canonical">
+    @Styles.Render("~/bundles/bootstrapcss", "~/Content/IconCss", "~/Content/css")
+</head>
+<body>
+    <div>
+        <a class="navbar-brand" href="#"><img src="~/Images/logo/logo.png" /></a>
+        <address class="float-lg-right mt-3 d-lg-inline-block d-none">
+            <strong>Support:</strong><a class="text-lowercase" href="mailto:support@khbarodia.com">support@khbarodia.com</a>
+            @*<strong>Advertiment:</strong><a href="mailto:Advertiment@KhbarOdia.com">Advertiment@KhbarOdia.com</a>*@
+        </address>
+    </div>
+    @Html.Action("menuLayout", "NewsType")
+    <section class="container-fluid body-content">
+        @RenderBody()
+    </section>
+    <section>
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-10 col-12 offset-lg-1 contact">
+                    <div class="row conmargin">
+                        <div class="col-lg-12">
+                            <h5 class="textcenter tealtext"><i class="fas fa-envelope"></i> ସମ୍ପର୍କ କରନ୍ତୁ</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <div class="card shadow-sm border-radus bg-teal-2 conmargin">
+                                <div class="card-body">
+                                    <i class="textcenter text-light"></i>
+                                    <h5 class="textcenter text-light">ଆପଣଙ୍କ ମତାମତ ଜଣାନ୍ତୁ</h5>
+                                    <p class="textcenter text-light">ଆପଣଙ୍କ ମତାମତ ଆମ ପାଇଁ ସର୍ବପ୍ରଥମ</p>
+                                </div>
+                            </div>
+                            <ul class="list-group">
+                                <li class="list-group-item"><h5><i class="fas fa-map-marked-alt"></i> Location</h5></li>
+                                <li class="list-group-item"><i class="fas fa-industry"></i> Khabar Odia</li>
+                                <li class="list-group-item"><i class="fas fa-sign-in-alt"></i> KhabarOdia.In</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="card shadow-sm border-radus conctfld bg-gray">
+                                <h5 class="textcenter">ସମସ୍ତ କୋଠରୀ ପୂର୍ଣ କରନ୍ତୁ</h5>
+                                <div class="form-group conmargin">
+                                    <label for="name"><i class="fas fa-user-circle"></i> Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Sunil Mohanty" />
+                                </div>
+                                <div class="form-group conmargin">
+                                    <label for="txtemail"><i class="fas fa-envelope-open"></i> Email</label>
+                                    <input type="text" class="form-control" id="txtemail" placeholder="abc@email.com" />
+                                </div>
+                                <div class="form-group conmargin">
+                                    <label for="txtphone"><i class="fas fa-phone-alt"></i> Phone</label>
+                                    <input type="text" class="form-control" id="txtphone" placeholder="894532782" />
+                                </div>
+                                <div class="form-group conmargin">
+                                    <label for="txtmsg"><i class="fas fa-quote-left"></i> Message</label>
+                                    <textarea id="txtmsg" class="form-control" placeholder="ମତାମତ ଏଠାରେ ଲେଖନ୍ତୁ "></textarea>
+                                </div>
+                                <button type="submit" id="btnSubmit" class="btn bg-teal text-light"><i class="fas fa-arrow-circle-right"></i> Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="page-footer bg-teal">
+        <div class="container-fluid">
+            <div class="row no-gutters pt-3 pb-3">
+                <div class="col-6 col-lg-6">
+                    <h5 class="text-light font-weight-bolder"><i class="fas fa-book-open"></i> ଆମ ଲକ୍ଷ୍ୟ</h5>
+                    <p class="text-light">
+                        ଆମର ପ୍ରୟାଶ ଆପଣଙ୍କୁ ଅସତ୍ୟ ଖବର ରୁ ଦୁରେଇ ରଖି,ସତ୍ୟ ଖବର ଅପାଣଙ୍କ ପାଖରେ ପହଞ୍ଚାଇବା
+                        ଗୋଟେ ବି ମିଛ ଖବର ପ୍ରଚାର ନ କରିବା ପାଇଁ ଆମେ ପ୍ରତିଶୃତିବଦ୍ଧ,ଆପଣ ମାନଙ୍କୁ ବି ଅନୁରୋଧ ମିଛ ଖବର କୁ ନିଜେ ପରଖନ୍ତୁ |
+                    </p>
+                </div>
+                <div class="col-6 col-lg-6 social np-zeropadding ns-btmtop left-float">
+                    <h5 class="text-light"><i class="fas fa-angle-right"></i> Our Links</h5>
+                    @Html.Partial("_Footer")
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                © @DateTime.Now.Year Copyright by Khabar Odia
+            </div>
+        </div>
+    </footer>
+    <a id="btntop" class="top"><i class="fas fa-angle-up"></i></a>
+    <div id="laoder" class="loading">
+        <i class="fas fa-spinner fa-spin fa-3x"></i>
+    </div>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/propper")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/resources")
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153182251-1"></script>
+    @Scripts.Render("~/bundles/main")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
